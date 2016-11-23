@@ -3,14 +3,10 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: {
-    index: [
-      './src/index'
-    ]
-  },
+  entry: './src/index',
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].js'
+    filename: 'bundle.js'
   },
   module: {
     loaders: [
@@ -26,8 +22,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: __dirname + '/temp/index.html', //來原
-      filename: 'myIndex.html', //輸出的名字
+      template: path.join(__dirname, 'src', 'index.html'),
+      filename: 'index.html',
       inject: 'body',
     })
   ]
