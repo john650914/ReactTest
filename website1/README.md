@@ -56,7 +56,10 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: './src/index',
+    entry: [
+        'eventsource-polyfill', // 據說可以讓 Webpack 兼容 IE
+        './src/index'
+    ],
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'bundle.js'
