@@ -2,7 +2,7 @@
 
 用 node.js 來設置前端開發環境，這個練習使用了 webpack 做 bundler，webpack-dev-server 做開發伺服器，並設定 react 的 loader 及 html-webpack-plugin 的 plugin。<br>
 
-**建立 package.json 檔：**
+**初始化專案 ( 建立 package.json 檔 )：**
 
     npm init
 <br>
@@ -10,10 +10,9 @@
 
     npm i --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react eventsource-polyfill html-webpack-plugin react react-dom webpack webpack-dev-server
 <br>
-**新增「src」資料夾及「index.html」、「index.js」、「apple.jsx」三個檔案**
+**新增「src」資料夾及「index.html」**
 <br><br><br>
 **index.html 內容：**
-
 ~~~html
 <!DOCTYPE html>
 <html>
@@ -28,12 +27,14 @@
 </html>
 ~~~
 <br>
+**編寫 React component - 在「src」內繼續新增「index.js」、「apple.jsx」兩個檔案**
+<br><br><br>
 **index.js 內容：**
-
-    import Apple from './apple.jsx';
+~~~javascript
+import Apple from './apple.jsx';
+~~~
 <br>
 **apple.jsx 內容：**
-
 ~~~javascript
 import React from 'react';
 import ReactDOM from 'react-dom';
