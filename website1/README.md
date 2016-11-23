@@ -1,6 +1,6 @@
-#說明：#
+#練習1說明：#
 
-練習1：用node.js來設置前端開發環境，這個練習使用了webpack做bundler，webpack-dev-server做開發伺服器，並設定react的loader及html-webpack-plugin的plugin。<br>
+用node.js來設置前端開發環境，這個練習使用了webpack做bundler，webpack-dev-server做開發伺服器，並設定react的loader及html-webpack-plugin的plugin。<br>
 
 **建立package.json檔：**
 
