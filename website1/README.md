@@ -15,9 +15,10 @@
     npm i --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react eventsource-polyfill html-webpack-plugin react react-dom webpack webpack-dev-server
 
 
-**新增「src」資料夾及「index.html」、「index.js」、「apple.jsx」三個檔案**
-
-
+**新增「src」資料夾及「index.html」、「index.js」、「apple.jsx」三個檔案！**  
+  
+  
+  
 **index.html內容：**
 
     <!DOCTYPE html>
