@@ -45,6 +45,7 @@
 <br>
 **在根目錄建立 webpack.config.js 檔：**
 
+~~~php
     var path = require('path');
     var webpack = require('webpack');
     var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -75,6 +76,7 @@
         })
       ]
     };
+~~~
 <br>
 **監聽專案：**
 
