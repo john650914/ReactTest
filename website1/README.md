@@ -93,6 +93,7 @@ module.exports = {
 
     npm run build
 
+<br>
 **以上，一個基本的開發環境就建立完成，後續的練習將再帶入其它設定，例如：**
 - Multiple react Component的操作
 - 安裝sass/scss loader
