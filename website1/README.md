@@ -35,51 +35,51 @@
 **apple.jsx 內容：**
 
 ~~~javascript
-    import React from 'react';
-    import ReactDOM from 'react-dom';
-    
-    class Apple extends React.Component{
-      render(){
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+class Apple extends React.Component{
+    render(){
         return <h1>This is an apple。</h1>;
-      }
     }
-    
-    ReactDOM.render(<Apple />,document.getElementById('fruit'));
+}
+
+ReactDOM.render(<Apple />,document.getElementById('fruit'))
 ~~~
 <br>
 **在根目錄建立 webpack.config.js 檔：**
 
 ~~~javascript
-    var path = require('path');
-    var webpack = require('webpack');
-    var HtmlWebpackPlugin = require('html-webpack-plugin');
-    
-    module.exports = {
-      entry: './src/index',
-      output: {
+var path = require('path');
+var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+    entry: './src/index',
+    output: {
         path: path.join(__dirname, 'dist'),
         filename: 'bundle.js'
-      },
-      module: {
+    },
+    module: {
         loaders: [
-          {
-            test: /.jsx?$/,
-            loader: 'babel-loader',
-            exclude: /node_modules/,
-            query: {
-              presets: ['es2015', 'react']
+            {
+                test: /.jsx?$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/,
+                query: {
+                    presets: ['es2015', 'react']
+                }
             }
-          }
         ]
-      },
-      plugins: [
+    },
+    plugins: [
         new HtmlWebpackPlugin({
-          template: path.join(__dirname, 'src', 'index.html'),
-          filename: 'index.html',
-          inject: 'body',
+            template: path.join(__dirname, 'src', 'index.html'),
+            filename: 'index.html',
+            inject: 'body',
         })
-      ]
-    };
+    ]
+};
 ~~~
 <br>
 **監聽專案：**
