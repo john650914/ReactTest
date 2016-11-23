@@ -91,7 +91,7 @@
 				return _react2.default.createElement(
 					'h1',
 					null,
-					'This is an apple\u3002'
+					'This is an apple\uFF01\uFF01\uFF01'
 				);
 			}
 		}]);
