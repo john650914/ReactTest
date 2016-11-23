@@ -14,6 +14,7 @@
 <br>
 **index.html 內容：**
 
+~~~html
     <!DOCTYPE html>
     <html>
     <head>
@@ -25,6 +26,7 @@
       <div id="fruit"></div>
     </body>
     </html>
+~~~
 <br>
 **index.js 內容：**
 
@@ -32,6 +34,7 @@
 <br>
 **apple.jsx 內容：**
 
+~~~javascript
     import React from 'react';
     import ReactDOM from 'react-dom';
     
@@ -42,6 +45,7 @@
     }
     
     ReactDOM.render(<Apple />,document.getElementById('fruit'));
+~~~
 <br>
 **在根目錄建立 webpack.config.js 檔：**
 
