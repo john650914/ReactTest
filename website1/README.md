@@ -1,4 +1,4 @@
-#練習1說明：#
+#練習 1 說明：#
 
 用 node.js 來設置前端開發環境，這個練習使用了 webpack 做 bundler，webpack-dev-server 做開發伺服器，並設定 react 的 loader 及 html-webpack-plugin 的 plugin。<br>
 
@@ -12,7 +12,7 @@
 <br>
 **新增「src」資料夾及「index.html」、「index.js」、「apple.jsx」三個檔案**
 <br>
-**index.html內容：**
+**index.html 內容：**
 
     <!DOCTYPE html>
     <html>
@@ -26,11 +26,11 @@
     </body>
     </html>
 <br>
-**index.js內容：**
+**index.js 內容：**
 
     import Apple from './apple.jsx';
 <br>
-**apple.jsx內容：**
+**apple.jsx 內容：**
 
     import React from 'react';
     import ReactDOM from 'react-dom';
@@ -43,7 +43,7 @@
     
     ReactDOM.render(<Apple />,document.getElementById('fruit'));
 <br>
-**在根目錄建立webpack.config.js檔：**
+**在根目錄建立 webpack.config.js 檔：**
 
     var path = require('path');
     var webpack = require('webpack');
