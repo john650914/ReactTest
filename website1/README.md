@@ -10,7 +10,7 @@
 
     npm i --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react eventsource-polyfill html-webpack-plugin react react-dom webpack webpack-dev-server
 <br>
-**新增「src」資料夾及「index.html」**
+**新增「src」資料夾及主文件「index.html」**
 <br><br><br>
 **index.html 內容：**
 ~~~html
@@ -48,7 +48,7 @@ class Apple extends React.Component{
 ReactDOM.render(<Apple />,document.getElementById('fruit'))
 ~~~
 <br>
-**在根目錄建立 webpack.config.js 檔：**
+**建立webpack設定檔 - 在根目錄建立 webpack.config.js 檔：**
 
 ~~~javascript
 var path = require('path');
@@ -93,3 +93,8 @@ module.exports = {
 
     npm run build
 
+**以上，一個基本的開發環境就建立完成，後續的練習將再帶入其它設定，例如：**
+- Multiple react Component的操作
+- 安裝sass/scss loader
+- 更多的plugin使用
+- ...........
