@@ -1,0 +1,751 @@
+.nav
+	display: flex
+	li
+		margin-right: 40px
+		background: #eee
+
+html
+	background-color: #fff
+
+p
+	+fsiz($contentFontSize)
+	line-height: 1.5
+	color: $pTextColor
+
+.bigDay
+	+fsiz($daysFontSize)
+
+header
+	h2
+		display: none
+#apple
+	>div
+		width: 100%
+	.wrap
+		width: 100%
+		min-width: 960px
+		max-width: 960px
+		margin: 0 auto
+	.landing
+		min-width: 960px
+		height: 500px
+		position: relative
+		color: white
+		overflow: hidden
+		.nextPrev
+			width: 100%
+			height: 46px
+			margin-top: -23px
+			position: absolute
+			top: 50%
+			display: block
+			z-index: 3
+			li
+				width: 46px
+				height: 46px
+				position: absolute
+				top: 0
+			.imgkv-arrow-left-copy-3-2x
+				left: 140px
+			.imgkv-arrow-left-copy-2-2x
+				right: 140px
+
+		.ld
+			width: 100%
+			height: 500px
+			+bgCover()
+		.textHeader
+			width: 960px
+			height: 375px
+			padding: 45px 0 0 0
+			margin: 0 auto
+			display: flex
+			.lHead
+				height: auto
+				h2.title_text
+					height: auto
+					margin: 0px 0 10px 15px
+					font-weight: 800
+					text-align: left
+					+fsiz($headerFontSize)
+					line-height: 1.5
+					text-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.5)
+				ul.subTitle
+					margin: 0px 0 0px 8px
+					list-style: disc
+					overflow: hidden
+					li
+						margin: 0px 0 0 30px
+						float: left
+						font-weight: 700
+						+fsiz(18)
+						line-height: 1.5
+						text-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.5)
+						text-align: left
+			.title
+				display: flex
+				font-weight: 700
+				z-index: 2
+				.dateH
+					width: auto
+					height: 44px
+					padding-right: 20px;
+					border-right: 1px solid hsl(0, 0%, 100%)
+					text-shadow: 0 1px 2px hsla(0, 0%, 0%, 0.5)
+					text-align: right
+					display: flex
+					flex-direction: row
+					.day
+						width: auto
+						height: 100%
+						padding-right: 10px;
+						+fsiz(44)
+						line-height: 1
+						display: flex
+					.date2
+						width: auto
+						height: 100%
+						text-align: left
+						display: flex
+						flex-direction: column
+						.year
+							width: 100%
+							height: 50%
+							+fsiz(16)
+							line-height: 20px
+						.month
+							width: 100%
+							height: 50%
+							+fsiz(20)
+							line-height: 20px
+
+		ul.sliderSwitch
+			+sliderSwitch(100px, 105px, 12px, 8px, white, white)
+
+	.search
+		.wrap
+			width: 100%
+			height: 86px
+			padding: 0 15px
+			position: relative
+			margin-top: -43px
+			border-radius: 10px
+			background-color: white
+			display: flex
+			ul
+				height: 100%
+				width: 100%
+				margin: 0 auto
+				+fsiz($searchFontSize)
+				display: flex
+				flex-direction: row
+				justify-content: space-around
+				align-items: center
+				li
+					position: relative
+				.destination
+					+selTagAfter
+					+inputTagBefore(19px, 22px, 10px, 15px, 0 97.860465%, 842.105263%, url($imgPath))
+					select
+						+Select(228px, 42px, 100px, black, $bgColor, $searchFontSize, 42px)
+							max-width: 100%
+							padding: 0 0 0 50px
+				.month
+					+selTagAfter
+					+inputTagBefore(23px, 24px, 10px, 15px, 0 89.449113%, 695.652174%, url($imgPath))
+					select
+						+Select(140px, 42px, 100px, black, $bgColor, $searchFontSize, 42px)
+						padding: 0 0 0 50px
+				.day
+					+selTagAfter
+					+inputTagBefore(23px, 24px, 10px, 15px, 0 89.449113%, 695.652174%, url($imgPath))
+					select
+						+Select(140px, 42px, 100px, black, $bgColor, $searchFontSize, 42px)
+							padding: 0 0 0 50px
+				.keyWord
+					+inputTagBefore(21px, 22px, 11px, 15px, 0 93.593315%, 761.904762%, url($imgPath))
+					input
+						+Text(220px, 42px, 100px, black, $bgColor, $searchFontSize, 42px)
+							padding-left: 40px
+							+placeholder
+								color: black
+				.search
+					input
+						+Button(100px, 42px, 100px, black, $mianColor, $searchFontSize, 42px)
+							background-color: $mianColor
+	.collection
+		.wrap
+			padding-top: 40px
+			h2
+				+fsiz($headerFontSize)
+				margin: 0 0 30px 10px
+				vertical-align: bottom
+			.itinery
+				margin-bottom: 60px
+				position: relative
+				.prevNext
+					position: absolute
+					bottom: 6px
+					right: 27px
+					display: flex-inline
+				button
+					width: 46px
+					height: 46px
+					margin-right: 16px
+				.itBox
+					display: flex
+					.place
+						width: 688px
+						padding: 56px 0 62px
+						margin: -60px 0
+						position: relative
+						+bgCover("../img/best1.jpg")
+						border-radius: 8px
+						+fsiz(12)
+						.days
+							color: white
+							position: absolute
+							top: 20px
+							left: 20px
+					.content
+						width: 480px
+						padding: 15px 36px 30px
+						margin: 0 0 0 -210px
+						z-index: 3
+						border-radius: 8px
+						background: white
+						text-align: center
+						+itineryTitle("h2.title", 0 0 10px, $titleFontSize, 28px, 800, $titleTextColor)
+						+itineryTitle("ul.subTitle", 0 0 20px, $subTitleFontSize, 1.75, normal, $subTitleTextColor)
+							width: 100%
+							list-style: disc
+							overflow: hidden
+							li
+								margin: 0 15px 0 20px
+								float: left
+						+itineryTitle("ul.note", 0 0 20px 85px, $noteFontSize, 1.5, normal, $noteTextColor)
+							width: calc(100% - 121px)
+							overflow: hidden
+							li
+								max-width: 100%
+								float: left
+								margin: 0 15px 0 0
+						+itineryTitle("h5.auther", 0 0 15px 85px, $autherFontSizeBig, 1.3, 800, $autherColor)
+							width: calc(100% - 85px)
+							position: relative
+							+itineryAutherPhoto(68px, 68px, 4px, hsl(0, 0%, 100%), 50%, -40px, -90px)
+						p
+							height: 76px
+							text-align: left
+							margin: 0 0 20px 0
+						.detailBtn
+							+Button(142px, 42px, 100px, black, $mianColor, 18, 25px)
+								background-color: $mianColor
+			ul.sliderSwitch
+				display: none
+
+	.newest
+		padding-top: 40px
+		.wrap
+			width: 960px
+			h2
+				+fsiz($headerFontSize)
+				margin: 0 0 30px 10px
+				vertical-align: bottom
+				.more
+					margin: 12px 0 0 0
+					+fsiz(18)
+					line-height: 16px
+			.itineryGroup
+				display: flex
+				flex-wrap: wrap
+				justify-content: space-between
+				.itinery
+					width: 470px
+					height: auto
+					border-radius: 8px
+					background-color: hsl(0, 0%, 100%)
+					display: flex
+					+itineryPlace(50%, 100%,bottom, 15px, left, 20px, 8px 0 0 8px, 12)
+					.content
+						width: 50%
+						height: 100%
+						padding: 22px 18px 14px 30px
+						+itineryTitle("h2.title", 0 0 10px, 20, 28px, 800, $titleTextColor)
+						+itineryTitle("ul.subTitle", 0 0 14px, $subTitleFontSize, 1.75, normal, $subTitleTextColor)
+							list-style: disc
+							margin-left: 20px
+							li
+								+fsiz($subTitleFontSize)
+								color: $subTitleTextColor
+								line-height: 1.75
+								text-align: left
+					+itineryTitle("ul.note", 0 0 15px, $noteFontSize, 1.3, normal, $noteTextColor)
+						overflow: hidden
+						margin-bottom: 10px
+						li
+							height: auto
+							max-width: 100%
+							margin: 0 15px 0px 0
+							line-height: 25px
+							float: left
+					+itineryTitle("h5.auther", 0 0 8px, $autherFontSizeSmall, 1.3, 800, $autherColor)
+						position: relative
+						+itineryAutherPhoto(48px, 48px, 4px, hsl(0, 0%, 100%), 50%, -8px, -55px)
+					p.detail
+						display: none
+				.itinery:first-child
+					width: 100%
+					height: auto
+					margin-bottom: 20px
+					border-radius: 8px
+					background-color: hsl(0, 0%, 100%)
+					display: flex
+					text-align: left
+					+itineryPlace(50%, 100%, bottom, 15px, left, 20px, 8px 0 0 8px, 12)
+					.content
+						width: 50%
+						height: auto
+						padding: 35px 35px 35px
+						display: flex
+						flex-wrap: wrap
+						+itineryTitle("h2.title", 0 0 10px, $titleFontSize, 1.2, 800, $titleTextColor)
+							order: 3
+						+itineryTitle("ul.subTitle", 0 0 14px, $subTitleFontSize, 1.75, normal, $subTitleTextColor)
+							order: 4
+							height: auto
+							margin: 0 0 20px
+							list-style: disc
+							li
+								margin: 0 10px 0 5px
+								display: inline
+								&:before
+									content: "• "
+									margin-right: 3px
+									font-size: 24px
+									line-height: 20px
+						+itineryTitle(".note", 0 0 20px, $noteFontSize, 1.5, normal, $noteTextColor)
+							order: 2
+							overflow: hidden
+							margin-bottom: 10px
+							li
+								height: auto
+								max-width: 100%
+								margin: 0 15px 0px 0
+								line-height: 25px
+								float: left
+						+itineryTitle("h5.auther", 0 0 10px, $autherFontSizeBig, 1.3, 800, $autherColor)
+							order: 1
+							position: relative
+							+itineryAutherPhoto(60px, 60px, 4px, hsl(0, 0%, 100%), 50%, -20px, -65px)
+						p.detail
+							height: 76px
+							order: 5
+							display: block
+
+	.hot
+		padding: 40px 0 30px 0
+		.wrap
+			width: 960px
+			h2
+				+fsiz($headerFontSize)
+				margin: 0 0 30px 10px
+				vertical-align: bottom
+				.more
+					margin: 12px 0 0 0
+					+fsiz(18)
+					line-height: 16px
+
+			.itineryGroup
+				display: flex
+				justify-content: space-between
+				.itinery
+					width: 310px
+					height: auto
+					background: white
+					border-radius: 8px
+					+itineryPlace(100%, 229px, bottom, 15px, right, 20px, 8px 8px 0 0, 12)
+					.content
+						padding: 10px 25px 30px
+						text-align: left
+						position: relative
+						+itineryTitle("h2.title", 0 0 10px, 20, 28px, normal, $titleTextColor)
+						+itineryTitle("ul.subTitle", 0 , $subTitleFontSize, 1.75, normal, $subTitleTextColor)
+							height: 84px
+							margin: 0
+							list-style: disc
+							li
+								margin: 0 10px 0 5px
+								display: inline
+								&:before
+									content: "• "
+									margin-right: 3px
+									font-size: 24px
+									line-height: 20px
+						+itineryTitle(".note", 0 0 15px, $noteFontSize, 1.3, normal, $noteTextColor)
+							overflow: hidden
+							margin-bottom: 10px
+							li
+								height: auto
+								max-width: 100%
+								margin: 0 15px 0px 0
+								line-height: 25px
+								float: left
+						+itineryTitle("h5.auther", 0 0 15px, $autherFontSizeSmall, 1.3, 800, $autherColor)
+							width: calc(100% - 72px)
+							margin: 0 0 20px
+							position: relative
+							left: 45px
+							+itineryAutherPhoto(48px, 48px, 4px, hsl(0, 0%, 100%), 50%, -27px, -55px)
+						p.detail
+							display: none
+
++respondTo("lg")
+	#app
+		.landing
+			.nextPrev
+				.imgkv-arrow-left-copy-3-2x
+					left: 50px
+				.imgkv-arrow-left-copy-2-2x
+					right: 50px
+			.textHeader
+				.lHead
+					width: 800px
+					ul.subTitle
+						width: 720px
+
++respondTo("sm")
+	header
+		height: 54px
+		padding: 0
+		margin: 0
+		background: $mianColor
+		text-align: center
+		position: relative
+		line-height: 54px
+		h2
+			display: block
+		+addIcon(before, "\f104", 40px, 1.3, black)
+			height: 100%
+			position: absolute
+			display: block
+			text-align: left
+			padding-left: 15px
+		h2
+			height: 100%
+			color: black
+			+fsiz(22px)
+			top: 0
+	#app
+		>div
+			.wrap
+				width: 100%
+				max-width: 100%
+				min-width: 100%
+		.landing
+			width: 100%
+			min-width: 100%
+			height: 250px
+			position: relative
+			.nextPrev
+				display: none
+			.slider
+				height: 250px
+				.ld
+					height: 250px
+				.wrap
+					width: 100%
+					padding: 0 28px 0 28px
+					.textHeader
+						width: 100%
+						height: 250px
+						padding: 15px 0 0 0
+						margin: 0
+						.lHead
+							width: calc(100% - 106px)
+							h2.title_text
+								width: 100%
+								height: 210px
+								padding-left: 10px
+								margin: 0
+								+fsiz(18)
+								line-height: 1.5
+							.subTitle
+								display: none
+						.title
+							.dateH
+								width: auto
+								height: 24px
+								margin-top: 5px
+								padding: 0 10px 0
+								text-align: right
+								.day
+									width: 30px
+									height: 100%
+									+fsiz(24)
+									line-height: 22px
+									margin-right: 2px
+								.date2
+									.year
+										+fsiz(10)
+										line-height: 1
+									.month
+										+fsiz(10)
+										line-height: 1
+										text-align: right
+			ul.sliderSwitch
+				height: 8px
+				+sliderSwitch(74px, 13px, 8px, 8px, white, white)
+		.search
+			.wrap
+				height: 250px
+				margin: 0
+				padding: 20px 27px
+				border-radius: 0
+				ul
+					display: block
+					overflow: hidden
+					li
+						float: left
+						margin-bottom: 14px
+					li.month, li.day
+						width: 49%
+						input, select
+							width: 100%
+					li.destination, li.keyWord, li.search
+						width: 100%
+						input, select
+							width: 100%
+					li.month
+						margin-right: 2%
+		.collection
+			.wrap
+				margin: 0
+				padding: 0
+				h2
+					height: 63px
+					padding: 20px 38px
+					margin: 0
+					+fsiz(22)
+				.itinery
+					margin-bottom: -65px
+					.itBox
+						margin-bottom: 0
+						flex-wrap: wrap
+						position: relative
+						.place
+							width: 100%
+							height: 270px
+							margin: 0 0 10px
+							padding: 192px 0 0 0
+							+bgCover("../img/best1.jpg")
+							border-radius: 0
+						.content
+							width: calc(100% - 56px)
+							height: auto
+							padding: 8px 20px
+							margin: 0
+							position: relative
+							left: 28px
+							top: -80px
+							border-radius: 4px
+							+itineryTitle("h2.title", 0 0 10px, $titleFontSizeBig-m, 24px, 800, $titleTextColor )
+								height: auto
+								padding: 0
+							+itineryTitle("ul.subTitle", 0 0 13px, $subTitleFontSize-m, 1.43, normal, $subTitleTextColor)
+								display: block
+								li
+									margin: 0 10px 0px 0
+									display: inline
+									&:before
+										content: "• "
+										margin-right: 3px
+										font-size: 24px
+										line-height: 20px
+							+itineryTitle("ul.note", 0 0 15px, $noteFontSize-m, 1, normal, $noteTextColor)
+								li
+									margin: 0 10px 10px 0
+									display: inline
+							+itineryTitle("h5.auther", 0 0 10px 60px, $autherFontSizeBig-m, 1.3, 800, $autherColor)
+								width: calc(100% - 30px)
+								position: relative
+								+itineryAutherPhoto(48px, 48px, 4px, hsl(0, 0%, 100%), 50%, -25px, -60px)
+							p.detail
+								display: block
+								height: 65px
+								margin: 0 0 18px 0
+								text-align: left
+								+fsiz($contentFontSize-m)
+							.detailBtn
+								display: none
+							.prevNext
+								display: none
+				ul.sliderSwitch
+					display: block
+					+sliderSwitch(90px, 10px, 8px, 8px, hsl(0, 0%, 80%), hsl(47, 99%, 52%))
+					position: static
+					margin: 0 auto 20px
+				.prevNext
+					display: none
+		.newest
+			padding-top: 0px
+			.wrap
+				h2
+					height: 63px
+					padding: 20px 38px
+					margin: 0
+					+fsiz(22)
+					.more
+						+fsiz($moreFontSize-m)
+						margin-top: 7px
+
+				.itineryGroup
+					display: flex
+					justify-content:space-between
+					flex-wrap: wrap
+					.itinery:first-child, .itinery
+						width: 100%
+						margin-bottom: 10px
+						border-radius: 0
+						background-color: hsl(0, 0%, 100%)
+						display: flex
+						+itineryPlace(45%, 100%, bottom, 10px, left, 10px, 0, 12)
+						.content
+							width: 55%
+							height: 100%
+							padding: 22px 18px 14px 30px
+							+itineryTitle("h2.title", 0 0 5px, $titleFontSize-m, 1.5, 800, $titleTextColor )
+								order: 2
+								height: auto
+								padding: 0
+							+itineryTitle("ul.subTitle", 0 0 13px, $subTitleFontSize-m, 1.43, normal, $subTitleTextColor)
+								min-height: 96px
+								margin-left: 20px
+								width: calc(100% - 20px)
+								order: 4
+								list-style: disc
+								li
+									width: 100%
+									padding: 0
+									margin: 0
+									display: list-item
+									float: none
+									&:before
+										display: none
+							+itineryTitle(".note", 0 0 10px, $noteFontSize-m, 1, normal, $noteTextColor)
+								order: 3
+								li
+									width: 100%
+									margin: 0 10px 0 0
+							+itineryTitle("h5.auther", 0 0 8px, $autherFontSizeSmall-m, 1.2, 800, $autherColor)
+								position: relative
+								order: 1
+								+itineryAutherPhoto(48px, 48px, 4px, hsl(0, 0%, 100%), 50%, -10px, -50px)
+							p.detail
+								order: 5
+								display: none
+					.itinery
+						.content
+							h3.subTitle
+								ul
+									margin-left: 20px
+		.hot
+			padding: 0
+			.wrap
+				h2
+					height: 63px
+					padding: 20px 38px
+					margin: 0
+					+fsiz(22)
+					.more
+						margin-top: 7px
+						+fsiz($moreFontSize-m)
+				.itineryGroup
+					padding: 0px 28px
+					display: flex
+					flex-wrap: wrap
+					.itinery
+						width: 100%
+						height: auto
+						margin-bottom: 20px
+						border-radius: 8px
+						+itineryPlace(100%, 229px,bottom, 10px, right, 10px, 8px 8px 0 0, 12)
+							position: relative
+							overflow: hidden
+						.content
+							padding: 10px 25px 30px
+							text-align: left
+							border-radius: 0 0 8px 8px
+							background-color: hsl(0, 0%, 100%)
+							+itineryTitle("h2.title", 0 0 10px, $titleFontSizeBig-m, 1.2, normal, $titleTextColor )
+								height: auto
+								padding: 0
+								margin-bottom: 8px
+							+itineryTitle("ul.subTitle", 0 0 13px, $subTitleFontSize, 1.75, normal, $subTitleTextColor)
+								min-height: 104px
+							+itineryTitle("ul.note", 0 0 15px, $noteFontSize, 1, normal, $noteTextColor)
+								margin-bottom: 12px
+							+itineryTitle("h5.auther", 0 0 15px, $autherFontSizeSmall-m, 1.3, 800, $autherColor)
+								width: calc( 100% - 72px )
+								margin: 0 0 15px
+								+itineryAutherPhoto(48px, 48px, 4px, hsl(0, 0%, 100%), 50%, -30px, -55px)
+
++respondTo("xs")
+	#app
+		.landing
+			position: relative
+			.wrap
+				.title
+					left: 10px
+				ul.sliderSwitch
+					+sliderSwitch(80px, 13px, 8px, 8px, white, white)
+		.search
+			height: 250px
+			.wrap
+				padding: 15px 20px
+				ul
+					li.month, li.day
+						width: 47%
+					li.month
+						margin-right: 6%
+		.collection
+			.wrap
+				.sliderSwitch
+					bottom: 10px
+				h2
+					padding: 20px
+				.itinery
+					.content
+						width: calc(100% - 40px)
+						height: 250px
+						left: 20px
+		.newest
+			%it
+				.place
+					position: relative
+					img
+						width: auto
+						height: 100%
+				.content
+					padding: 20px 38px 20px 32px
+					h5.auther
+						img
+							left: -40px
+			.wrap
+				h2
+					padding: 20px
+				.itineryGroup
+					.itinery
+						@extend %it
+					.itinery:first-child
+						@extend %it
+		.hot
+			.wrap
+				.itineryGroup
+					padding: 0 20px
+					.itinery
+						.place
+							height: auto
++respondTo("xxs")
+	html
+		min-width: 320px
