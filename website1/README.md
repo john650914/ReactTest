@@ -33,7 +33,6 @@
 ~~~javascript
 import Apple from './apple.jsx';
 ~~~
-<br>
 **apple.jsx 內容：**
 ~~~javascript
 import React from 'react';
