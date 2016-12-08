@@ -15,16 +15,13 @@
  
  - html-webpack-plugin<br>自動載入compile過的JS檔到html文件
 
-####react react-dom
-React核心
+ - react react-dom<br>React核心
 
-####webpack
-webpack
+ - webpack<br>webpack
 
-####webpack-dev-server
-webpack-dev-server
+ - webpack-dev-server<br>webpack-dev-server
 
-###新增「src」資料夾及主文件「index.html」###
+ - 新增「src」資料夾及主文件「index.html」###
 <br><br>
 **index.html 內容：**
 ~~~html
