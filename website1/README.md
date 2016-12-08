@@ -21,6 +21,7 @@
 
  - webpack-dev-server<br>webpack-dev-server
 
+<br>
 ###新增「src」資料夾及主文件「index.html」###
 
 ####index.html 內容：####
@@ -38,9 +39,9 @@
 </html>
 ~~~
 <br>
-**編寫 React component - 在「src」內繼續新增「index.js」、「apple.jsx」兩個檔案**
+###編寫 React component - 在「src」內繼續新增「index.js」、「apple.jsx」兩個檔案###
 <br><br>
-**index.js 內容：**
+####index.js 內容：####
 ~~~javascript
 import Apple from './apple.jsx';
 ~~~
@@ -58,7 +59,7 @@ class Apple extends React.Component{
 ReactDOM.render(<Apple />,document.getElementById('fruit'))
 ~~~
 <br>
-**建立webpack設定檔 - 在根目錄建立 webpack.config.js 檔：**
+###建立webpack設定檔 - 在根目錄建立 webpack.config.js 檔：###
 
 ~~~javascript
 var path = require('path');
@@ -96,18 +97,18 @@ module.exports = {
 };
 ~~~
 <br>
-**監聽專案：**
+###監聽專案：###
 
     npm run dev
 
 我們可以在http://localhost:8080/webpack-dev-server/看到執行的結果
 <br><br>
-**打包專案：**
+###打包專案：###
 
     npm run build
 
 <br>
-**以上，一個基本的開發環境就建立完成，後續的練習將再帶入其它設定，例如：**
+###以上，一個基本的開發環境就建立完成，後續的練習將再帶入其它設定，例如：###
 - Multiple react Component的操作
 - 安裝sass/scss loader
 - 更多的plugin使用
