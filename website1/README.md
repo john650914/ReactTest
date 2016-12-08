@@ -9,20 +9,9 @@
 
     npm i --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react eventsource-polyfill html-webpack-plugin react react-dom webpack webpack-dev-server
 
- - 這是列表1
-   列表1的第二行
-
- - 這是列表2
-   列表2的第二行
-
- - 這是列表3
-   列表3的第二行
-
-
  - babel-core babel-loader babel-preset-es2015 babel-preset-react
   ES6 compiler
- - eventsource-polyfill
-好像是給IE用的
+ - eventsource-polyfill<br>好像是給IE用的
  - html-webpack-plugin
 自動載入compile過的JS檔到html文件
 
