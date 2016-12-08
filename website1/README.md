@@ -62,7 +62,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: [
-        'eventsource-polyfill', // 據說可以讓 Webpack 兼容 IE
+        'eventsource-polyfill', // necessary for hot reloading with IE
         './src/index'
     ],
     output: {
