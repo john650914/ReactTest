@@ -9,22 +9,22 @@
 **安裝所需要的 package：**
 
     npm i --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react eventsource-polyfill html-webpack-plugin react react-dom webpack webpack-dev-server
-***babel-core babel-loader babel-preset-es2015 babel-preset-react***
+***babel-core babel-loader babel-preset-es2015 babel-preset-react***<br>
 ES6 compiler
 
-***eventsource-polyfill***
+***eventsource-polyfill***<br>
 好像是給IE用的
 
-***html-webpack-plugin***
+***html-webpack-plugin***<br>
 自動載入compile過的JS檔到html文件
 
-***react react-dom***
+***react react-dom***<br>
 React核心
 
-***webpack***
+***webpack***<br>
 webpack
 
-***webpack-dev-server***
+***webpack-dev-server***<br>
 webpack-dev-server
 <br><br>
 **新增「src」資料夾及主文件「index.html」**
