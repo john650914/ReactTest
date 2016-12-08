@@ -6,7 +6,7 @@
 
     npm init
 <br>
-**安裝所需要的 package：**
+###安裝所需要的 package：###
 
     npm i --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react eventsource-polyfill html-webpack-plugin react react-dom webpack webpack-dev-server
 *babel-core babel-loader babel-preset-es2015 babel-preset-react*
