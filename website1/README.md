@@ -103,3 +103,5 @@ module.exports = {
 - 安裝sass/scss loader
 - Hot Reloading
 - Express
+- Redux
+- React Router
