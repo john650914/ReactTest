@@ -28,7 +28,7 @@
 ~~~
 <br>
 **編寫 React component - 在「src」內繼續新增「index.js」、「apple.jsx」兩個檔案**
-<br><br><br>
+<br><br>
 **index.js 內容：**
 ~~~javascript
 import Apple from './apple.jsx';
@@ -91,7 +91,7 @@ module.exports = {
     npm run dev
 
 我們可以在http://localhost:8080/webpack-dev-server/看到執行的結果
-<br><br><br>
+<br><br>
 **打包專案：**
 
     npm run build
