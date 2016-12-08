@@ -38,9 +38,7 @@
 </body>
 </html>
 ~~~
-<br>
 ###編寫 React component - 在「src」內繼續新增「index.js」、「apple.jsx」兩個檔案###
-<br><br>
 ####index.js 內容：####
 ~~~javascript
 import Apple from './apple.jsx';
@@ -58,7 +56,6 @@ class Apple extends React.Component{
 
 ReactDOM.render(<Apple />,document.getElementById('fruit'))
 ~~~
-<br>
 ###建立webpack設定檔 - 在根目錄建立 webpack.config.js 檔：###
 
 ~~~javascript
@@ -96,13 +93,12 @@ module.exports = {
     ]
 };
 ~~~
-<br>
 ###監聽專案：###
 
     npm run dev
 
 我們可以在http://localhost:8080/webpack-dev-server/看到執行的結果
-<br><br>
+<br>
 ###打包專案：###
 
     npm run build
