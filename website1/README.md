@@ -11,7 +11,7 @@
     npm i --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react eventsource-polyfill html-webpack-plugin react react-dom webpack webpack-dev-server
 <br>
 **新增「src」資料夾及主文件「index.html」**
-<br><br><br>
+<br><br>
 **index.html 內容：**
 ~~~html
 <!DOCTYPE html>
