@@ -12,19 +12,19 @@
 ***babel-core babel-loader babel-preset-es2015 babel-preset-react
 ES6 compiler
 
-***eventsource-polyfill
+***eventsource-polyfill***
 好像是給IE用的
 
-***html-webpack-plugin
+***html-webpack-plugin***
 自動載入compile過的JS檔到html文件
 
-***react react-dom
+***react react-dom***
 React核心
 
-***webpack
+***webpack***
 webpack
 
-***webpack-dev-server
+***webpack-dev-server***
 webpack-dev-server
 <br>
 **新增「src」資料夾及主文件「index.html」**
