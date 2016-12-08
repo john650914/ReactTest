@@ -21,7 +21,6 @@
 
  - webpack-dev-server<br>webpack-dev-server
 
-<br>
 ###新增「src」資料夾及主文件「index.html」###
 
 ####index.html 內容：####
@@ -98,12 +97,11 @@ module.exports = {
     npm run dev
 
 我們可以在http://localhost:8080/webpack-dev-server/看到執行的結果
-<br>
+
 ###打包專案：###
 
     npm run build
 
-<br>
 ###以上，一個基本的開發環境就建立完成，後續的練習將再帶入其它設定，例如：###
 - Multiple react Component的操作
 - 安裝sass/scss loader
