@@ -3,10 +3,11 @@
 用 node.js 來設置前端開發環境，這個練習使用了 webpack 做 bundler，webpack-dev-server 做開發伺服器，並設定 react 的 loader 及 html-webpack-plugin 的 plugin。
 ###初始化專案 ( 建立 package.json 檔 )：###
     npm init
-###安裝所需要的 package：###
 
+###安裝所需要的 package：###
     npm i --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react eventsource-polyfill html-webpack-plugin react react-dom webpack webpack-dev-server
-*babel-core babel-loader babel-preset-es2015 babel-preset-react*
+    
+####babel-core babel-loader babel-preset-es2015 babel-preset-react####
 ES6 compiler
 
 ####eventsource-polyfill
