@@ -9,13 +9,8 @@
 
     npm i --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react eventsource-polyfill html-webpack-plugin react react-dom webpack webpack-dev-server
 
- - List item
-asfaf
- - asdf sdf
-
-
  - babel-core babel-loader babel-preset-es2015 babel-preset-react
-ES6 compiler
+ ES6 compiler
  - eventsource-polyfill
 好像是給IE用的
  - html-webpack-plugin
