@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "dev": "webpack-dev-server --progress --colors"
+    "dev": "webpack-dev-server --inline --hot --colors --progress --port=8383"
   },
   "author": "",
   "license": "ISC",
@@ -17,7 +17,7 @@
     "babel-preset-react": "^6.16.0",
     "css-loader": "^0.26.1",
     "eventsource-polyfill": "^0.9.6",
-    "file-loader": "^0.9.0",
+    "extract-text-webpack-plugin": "^1.0.1",
     "html-webpack-plugin": "^2.24.1",
     "node-sass": "^3.13.0",
     "react": "^15.4.0",

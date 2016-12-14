@@ -1,10 +1,12 @@
 var path = require('path');
 var webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+	devtool: 'source-map',
 	entry: [
-		'eventsource-polyfill', // 據說可以讓 Webpack 兼容 IE
+		'eventsource-polyfill',
 		'./src/index'
 	],
 	output: {
@@ -23,19 +25,12 @@ module.exports = {
 				}
 			},
 			{
-				test: /\.sass$/,
-				loader: 'style!css?sourceMap!sass',
-				exclude: /node_modules/
+				test: /(\.sass$|\.scss$)/,
+				loader: ExtractTextPlugin.extract('css?sourceMap!sass')
 			},
 			{
 				test: /\.(jpg|gif|png)$/,
-				loader: "file",
-				exclude: /node_modules/
-			},
-			{
-				test: /\.(jpg|gif|png)$/,
-				loader: "url",
-				exclude: /node_modules/
+				loader: 'url-loader?limit=1024&name=[path][name].[ext]'
 			}
 		]
 	},
@@ -44,6 +39,9 @@ module.exports = {
 			template: path.join(__dirname, 'src', 'index.html'),
 			filename: 'index.html',
 			inject: 'body',
+		}),
+		new ExtractTextPlugin('style/main.css', {
+			allChunks: true
 		})
 	]
 };
