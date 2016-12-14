@@ -2,8 +2,8 @@
  - 在 webpack 中使用 sass 來撰寫 CSS，並加入 sourceMap 幫助開發
  - 產生實體的 CSS 檔而不是埋在 Javascript 裡
  - 在 sass 及 react 加入圖檔
- 
- ###安裝所需要的 package：###
+
+###安裝所需要的 package：###
     npm i --save-dev css-loader extract-text-webpack-plugin node-sass sass-loader style-loader url-loader
 
  ###修改 webpack.config.js： ###
