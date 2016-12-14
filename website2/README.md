@@ -68,3 +68,11 @@ module.exports = {
  - src/images/smile.png
  - src/style/img/puppy.jpg
 
+###新增 src/style/main.sass 及編輯其內容：###
+~~~sass
+*
+    border: 1px solid blue
+#fruit
+    background: url(img/puppy.jpg) left top no-repeat
+    height: 500px
+~~~
