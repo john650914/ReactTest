@@ -6,7 +6,7 @@
 ###安裝所需要的 package：###
     npm i --save-dev css-loader extract-text-webpack-plugin node-sass sass-loader style-loader url-loader
 
- ###修改 webpack.config.js： ###
+###修改 webpack.config.js： ###
 ~~~javascript
 var path = require('path');
 var webpack = require('webpack');
@@ -63,3 +63,8 @@ module.exports = {
     ]
 };
 ~~~
+
+###新增下列圖檔：###
+ - src/images/smile.png
+ - src/style/img/puppy.jpg
+
