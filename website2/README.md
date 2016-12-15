@@ -98,6 +98,12 @@ class Apple extends React.Component{
 ReactDOM.render(<Apple />,document.getElementById('fruit'));
 ~~~
 
+###編輯 apple.jsx：###
+~~~js
+import Apple from './apple.jsx';
+import './style/main.sass';
+~~~
+
 執行 npm run dev 就可以在網頁中看到我們新增的樣式及插入的圖片，執行 npm run build 就可以在 dist 目錄中看到我們的 css 檔及圖檔。
 
 如此我們就可以開始撰寫 sass，並且 webpack 會自動幫我們 compile CSS，非常方便，接下來的練習可能會是：
