@@ -22,10 +22,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     devtool: 'source-map',
-    entry: [
-        'eventsource-polyfill',
-        './src/index'
-    ],
+    entry: ['./src/index'],
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'bundle.js',
