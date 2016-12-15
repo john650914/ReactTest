@@ -9,7 +9,7 @@
  - style-loader 自動將 CSS 檔的內容插入到頁面有 require CSS 的地方，並用 &lt;style&gt; 包住（require 可載入 CSS 了）
  - css-loader 自動處理 CSS 內的 url 和 @import 的路徑轉換，可以傳入 sourceMap 參數以便 debug
  - sass-loader 自動編譯 sass 檔成 CSS （require 可載入 sass 了）
- - url-loader 自動將圖片轉成 Data URL，設定時可帶入[hash:8]（代表8碼的hashtag）、[path]、[name]及[ext]等的描述，它也可設定指定的大小將圖檔轉換成base64格式，寫法範到：loader: 'url?limit=1024&name=[sha512:hash:base64:7].[ext]'；
+ - url-loader 自動將圖片轉成 Data URL，設定時可帶入[hash:8]（代表8碼的hashtag）、[path]、[name]及[ext]等的描述，它也可設定指定的大小將圖檔轉換成base64格式，寫法範到：loader: 'url?limit=1024&name=[sha512:has_h:base64:7].[ext]'；
  - 通常網路上的教學會要我們也安裝file-loader，但實測後發現url-loader就夠了
  - extract-text-webpack-plugin，webpack會將載入的 css 用 &lt;style&gt; 標籤寫在 html 文件中，使用這個 plugin 可以將 css 分離到一支獨立的 css 檔 
  - sass-loader（若安裝 sass-loader 不成功需加裝 node-sass）
