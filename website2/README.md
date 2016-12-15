@@ -40,7 +40,7 @@ module.exports = {
             },
             {
                 test: /(\.sass$|\.scss$)/,
-                loader: ExtractTextPlugin.extract('css?sourceMap!sass')
+                loader: ExtractTextPlugin.extract('css?sourceMap!autoprefixer!sass')
             },
             {
                 test: /\.(jpg|gif|png)$/,
