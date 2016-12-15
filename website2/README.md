@@ -4,7 +4,7 @@
  - 在 sass 及 react 加入圖檔
 
 ###安裝所需要的 package：###
-    npm i --save-dev css-loader extract-text-webpack-plugin node-sass sass-loader style-loader url-loader
+    npm i --save-dev css-loader extract-text-webpack-plugin node-sass sass-loader style-loader url-loader autoprefixer-loader
 
 ###修改 webpack.config.js： ###
 ~~~javascript
