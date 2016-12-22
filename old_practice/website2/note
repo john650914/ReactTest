@@ -1,0 +1,20 @@
+//Sublime text
+npm install -g eslint babel-eslint eslint-plugin-react
+
+
+// 按指示初始化 NPM 設定檔 package.json
+npm init
+
+// --save-dev 是可以讓你將安裝套件的名稱和版本資訊存放到 package.json，方便日後使用
+npm install --save react react-dom
+npm install --save-dev babel-core babel-eslint babel-loader babel-preset-es2015 babel-preset-react html-webpack-plugin webpack webpack-dev-server
+
+//SASS
+npm install sass-loader node-sass  css-loader style-loader --save-dev
+npm install --save-dev extract-text-webpack-plugin
+
+//build
+npm run production
+
+//live reload
+npm run start

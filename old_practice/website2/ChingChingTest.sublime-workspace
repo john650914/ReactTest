@@ -1,0 +1,1275 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"hello",
+				"HelloWorld"
+			],
+			[
+				"Re",
+				"ReactDOM"
+			],
+			[
+				"mar",
+				"margin-right"
+			],
+			[
+				"padd",
+				"padding"
+			],
+			[
+				"bac",
+				"background-size"
+			],
+			[
+				"padding",
+				"padding-right"
+			],
+			[
+				"max-",
+				"max-width"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"styl",
+				"list-style"
+			],
+			[
+				"bor",
+				"border-radius"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"ld",
+				"ldSrc"
+			],
+			[
+				"li",
+				"list	list-style-type"
+			],
+			[
+				"coll",
+				"collection"
+			],
+			[
+				"marign",
+				"margin-left"
+			],
+			[
+				"mn",
+				"min-width"
+			],
+			[
+				"lef",
+				"left"
+			],
+			[
+				"paddin",
+				"padding"
+			],
+			[
+				"pa",
+				"padding-left"
+			],
+			[
+				"zin",
+				"z-index"
+			],
+			[
+				"ba",
+				"background"
+			],
+			[
+				"max",
+				"max-width"
+			],
+			[
+				"pad",
+				"padding"
+			],
+			[
+				"ma",
+				"margin-top"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"back",
+				"background-size"
+			],
+			[
+				"border",
+				"border-radius"
+			],
+			[
+				"img",
+				"_img.scss"
+			],
+			[
+				"zi",
+				"z-index"
+			],
+			[
+				"c",
+				"class	Attr"
+			],
+			[
+				"pt",
+				"padding-top"
+			],
+			[
+				"mt",
+				"margin-top"
+			],
+			[
+				"bot",
+				"border-top"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"backg",
+				"background"
+			],
+			[
+				"min",
+				"min-width"
+			],
+			[
+				"cl",
+				"clear"
+			],
+			[
+				"background-",
+				"background-position"
+			],
+			[
+				"cur",
+				"cursor"
+			],
+			[
+				"fl",
+				"float"
+			],
+			[
+				"h",
+				"href	Attr"
+			],
+			[
+				"po",
+				"pointer"
+			],
+			[
+				"cou",
+				"cursor"
+			],
+			[
+				"g",
+				"_galereya.scss"
+			],
+			[
+				"add",
+				"addClass	.addClass()"
+			],
+			[
+				"on",
+				"onclick	Attr"
+			],
+			[
+				"ar",
+				"article	Tag"
+			],
+			[
+				"pro",
+				"proto	Prototype"
+			],
+			[
+				"has",
+				"hasClass	.hasClass()"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"op",
+				"opacity"
+			],
+			[
+				"inl",
+				"inline"
+			],
+			[
+				"inlie",
+				"inline-block"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"bo",
+				"bottom"
+			],
+			[
+				"cu",
+				"cursor"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"se",
+				"section	Tag"
+			],
+			[
+				"im",
+				"img	Tag"
+			],
+			[
+				"z-",
+				"z-index"
+			],
+			[
+				"t",
+				"type	Attr"
+			],
+			[
+				"i",
+				"images/"
+			],
+			[
+				"paddi",
+				"padding-left"
+			],
+			[
+				"font-",
+				"font-size"
+			],
+			[
+				"boot",
+				"bootstrap.scss"
+			],
+			[
+				"bordr",
+				"border-radius"
+			],
+			[
+				"fo",
+				"font-weight"
+			],
+			[
+				"in",
+				"inline-block"
+			],
+			[
+				"port",
+				"_portfolio_gp.scss"
+			],
+			[
+				"dis",
+				"display"
+			],
+			[
+				"b",
+				"body	Tag"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "package.json",
+			"settings":
+			{
+				"buffer_size": 761,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "webpack.config.js",
+			"settings":
+			{
+				"buffer_size": 963,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/index.js",
+			"settings":
+			{
+				"buffer_size": 302,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/sass/main.sass",
+			"settings":
+			{
+				"buffer_size": 18,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "dist/index.html",
+			"settings":
+			{
+				"buffer_size": 251,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": ".babelrc",
+			"settings":
+			{
+				"buffer_size": 31,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": ".eslintrc",
+			"settings":
+			{
+				"buffer_size": 312,
+				"line_ending": "Windows",
+				"name": "{"
+			}
+		},
+		{
+			"file": "app/index.html",
+			"settings":
+			{
+				"buffer_size": 141,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "note",
+			"settings":
+			{
+				"buffer_size": 507,
+				"line_ending": "Windows",
+				"name": "// 按指示初始化 NPM 設定檔 package.json"
+			}
+		}
+	],
+	"build_system": "Packages/SASS Build/SASS.sublime-build",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 361.0,
+		"last_filter": "pi",
+		"selected_items":
+		[
+			[
+				"pi",
+				"Package Control: Install Package"
+			],
+			[
+				"SassBeautify",
+				"SassBeautify"
+			],
+			[
+				"i",
+				"Package Control: Install Package"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"autosa",
+				"Toggle AutoSave: all files"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: inst",
+				"Package Control: Install Package"
+			],
+			[
+				"inst pack",
+				"Package Control: Install Package"
+			],
+			[
+				"inst ",
+				"Package Control: Install Package"
+			],
+			[
+				"re",
+				"Package Control: Remove Package"
+			],
+			[
+				"inst pa",
+				"Package Control: Install Package"
+			],
+			[
+				"rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"list pa",
+				"Package Control: List Packages"
+			],
+			[
+				"pack li",
+				"Package Control: List Packages"
+			],
+			[
+				"inst p",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"pace",
+				"Package Control: Install Package"
+			],
+			[
+				"pacle",
+				"Package Control: Install Package"
+			],
+			[
+				"pa",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Package Control: Install Package"
+			],
+			[
+				"list",
+				"Package Control: List Packages"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Gist",
+				"Gist: Create Public Gist"
+			],
+			[
+				"gist",
+				"Package Control: Install Package"
+			],
+			[
+				"Emmet",
+				"Toggle Comment"
+			]
+		],
+		"width": 502.0
+	},
+	"console":
+	{
+		"height": 164.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/D/React/ChingChingTest",
+		"/D/React/ChingChingTest/app",
+		"/D/React/ChingChingTest/app/sass",
+		"/D/React/ChingChingTest/dist",
+		"/D/React/ChingChingTest/dist/dist",
+		"/D/React/ChingChingTest/dist/dist/css"
+	],
+	"file_history":
+	[
+		"/D/React/webpack-css-example-master/webpack.config.js",
+		"/D/React/ChingChingTest/.babelrc",
+		"/D/FTC/tripitta-frontend/css/sass/page/sec/member/_mobile.htm.sass",
+		"/D/FTC/tripitta-frontend/css/sass/page/sec/travel-hotel/embed/_faq.htm.sass",
+		"/D/FTC/ChingChingTest_js/css/sass/main.sass",
+		"/D/FTC/ChingChingTest_js/css/sass/_variable.sass",
+		"/D/FTC/ChingChingTest_js/partial.html",
+		"/D/FTC/ChingChingTest_js/json/hot.json",
+		"/D/FTC/ChingChingTest_js/css/sass/_reset.scss",
+		"/D/FTC/ChingChingTest_js/css/_reset.css",
+		"/D/FTC/ChingChingTest_js/css/sass/_common.sass",
+		"/D/FTC/ChingChingTest_js/css/sass/_img.scss",
+		"/D/FTC/ChingChingTest_js/css/sass/_mixins.sass",
+		"/D/FTC/ChingChingTest_js/css/sass/_index.html.sass",
+		"/D/FTC/ChingChingTest_js/index.html",
+		"/D/FTC/ChingChingTest_js/json/ldSrc.json",
+		"/D/FTC/ChingChingTest_js/js/vue-slider.js",
+		"/D/FTC/ChingChingTest_js/js/jQ.js",
+		"/D/FTC/ChingChingTest_js/json/new.json",
+		"/D/ChingChing/Tools/F2E/Editor/sublimetext/Sublime Text Build 3065 x64/Data/Settings/SideBarEnhancements.json",
+		"/C/xampp/apache/conf/extra/httpd-vhosts.conf",
+		"/C/xampp/apache/conf/httpd.conf",
+		"/D/ChingChing/Tools/F2E/Editor/sublimetext/Sublime Text Build 3065 x64/Data/Packages/SassBeautify/SassBeautify.sublime-settings",
+		"/D/ChingChing/Tools/F2E/Editor/sublimetext/Sublime Text Build 3065 x64/Data/Packages/User/SassBeautify.sublime-settings",
+		"/D/FTC/bootstrap-sass-3.3.7/bootstrap-sass-3.3.7/assets/stylesheets/bootstrap/mixins/_reset-text.scss",
+		"/D/FTC/bootstrap-sass-3.3.7/bootstrap-sass-3.3.7/assets/stylesheets/bootstrap/mixins/_reset-filter.scss",
+		"/D/FTC/tripitta-frontend/css/sass/_mixin.sass",
+		"/D/FTC/tripitta-frontend/.gitignore",
+		"/D/ChingChing/Tools/F2E/Editor/sublimetext/Sublime Text Build 3065 x64/Data/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
+		"/D/FTC/ChingChingTest_js/css/main.css",
+		"/D/FTC/ChingChingTest_js/js/vue-events.js",
+		"/D/ChingChing/Asset/home/index.html",
+		"/D/ChingChing/Asset/home/main.html",
+		"/D/FTC/ChingChingTest_js/.sublime/SideBarEnhancements.json",
+		"/D/ChingChing/Tools/F2E/Editor/sublimetext/Sublime Text Build 3065 x64/Data/Packages/User/Default (Windows).sublime-keymap",
+		"/D/FTC/ChingChingTest/css/sass/_common.sass",
+		"/D/FTC/tripitta-frontend/css/sass/_common.sass",
+		"/D/FTC/ChingChingTest/css/sass/_variable.sass",
+		"/D/FTC/ChingChingTest/css/sass/_img.scss",
+		"/D/FTC/ChingChingTest/css/sass/_reset.scss",
+		"/D/FTC/ChingChingTest/css/sass/main.sass",
+		"/D/FTC/ChingChingTest/css/sass/_index.html.sass",
+		"/D/FTC/ChingChingTest/css/sass/index.html.sass",
+		"/D/FTC/ChingChingTest/css/main.css",
+		"/D/FTC/tripitta-frontend/css/sass/page/sec/itinerary/_index.htm.sass",
+		"/D/ChingChing/Asset/paints/sass/_variable.scss",
+		"/D/ChingChing/Asset/paints/sass/_mixin.scss",
+		"/D/ChingChing/Asset/paints/sass/main.scss",
+		"/D/Practice/CSS_Sprite2/css/sass/main.scss",
+		"/D/FTC/ChingChingTest/css/_img.scss",
+		"/D/FTC/ChingChingTest/css/_img.css",
+		"/D/Practice/CSS_Sprite2/test.html",
+		"/D/FTC/ChingChingTest/css/sass/_mommon.sass",
+		"/D/FTC/ChingChingTest/.sublime/SideBarEnhancements.json",
+		"/D/FTC/ChingChingTest/css/sass/_common",
+		"/D/FTC/ChingChingTest/css/_variable.css",
+		"/D/FTC/ChingChingTest/css/sass/_variable.scss",
+		"/D/ChingChing/Asset/base/scss/main.scss",
+		"/D/ChingChing/Asset/base/scss/_variable.scss",
+		"/D/ChingChing/Asset/AU/scss/_variable.scss",
+		"/D/FTC/tripitta-frontend/sec/embed/footer.htm",
+		"/D/FTC/tripitta-frontend/event/ezDing/web-notification/index.htm",
+		"/D/FTC/tripitta-frontend/css/sass/page/sec/embed/_header.sass",
+		"/D/FTC/tripitta-frontend/sec/embed/header.htm",
+		"/D/FTC/tripitta-frontend/js/main.js",
+		"/D/FTC/tripitta-frontend/css/sass/page/_index-new.htm.sass",
+		"/D/FTC/tripitta-frontend/index-new.htm",
+		"/D/FTC/tripitta-frontend/css/main.css",
+		"/D/FTC/tripitta-frontend/sec/topic/js/ftc.js",
+		"/D/FTC/tripitta-frontend/index.htm",
+		"/D/FTC/tripitta-frontend/index-m.htm",
+		"/D/FTC/tripitta-frontend/event/tripitta/activity/card4G/css/sass/page/_step2.htm.sass",
+		"/D/FTC/tripitta-frontend/prepros.cfg",
+		"/D/FTC/tripitta-frontend/css/sass/_img.scss",
+		"/D/FTC/tripitta-frontend/css/sass/_img-sub.scss",
+		"/D/Practice/CSS_Sprite/sprite.css",
+		"/D/Practice/CSS_Sprite/test.html",
+		"/D/FTC/tripitta-frontend/.sublime/SideBarEnhancements.json",
+		"/D/tripitta-frontend/css/sass/page/sec/embed/_footer.sass",
+		"/D/tripitta-frontend/css/sass/page/sec/area/_index.htm.sass",
+		"/D/tripitta-frontend/css/sass/_common.sass",
+		"/D/tripitta-frontend/event/tripitta/app/appPay/css/sass/_mixin.sass",
+		"/D/tripitta-frontend/css/sass/img-area.scss",
+		"/D/tripitta-frontend/css/sass/main2.sass",
+		"/D/tripitta-frontend/css/sass/main.sass",
+		"/D/tripitta-frontend/js/main.js",
+		"/D/tripitta-frontend/.sublime/SideBarEnhancements.json",
+		"/D/tripitta-frontend/index-new.htm",
+		"/D/tripitta-frontend/css/sass/page/_index.htm.sass",
+		"/D/tripitta-frontend/css/sass/page/_index-new.htm.sass",
+		"/D/tripitta-frontend/css/sass/page/_index-m.htm.sass",
+		"/D/ChingChing/Tools/F2E/Editor/sublimetext/Sublime Text Build 3065 x64/Data/Packages/User/Preferences.sublime-settings",
+		"/D/tripitta-frontend/public/index.htm",
+		"/D/tripitta-frontend/css/coupon.css",
+		"/D/tripitta-frontend/css/sass/_mixin.sass",
+		"/D/tripitta-frontend/css/main.css",
+		"/D/tripitta-frontend/.gitignore",
+		"/D/Code/js/main.js",
+		"/C/xampp/htdocs/css/sass/member.sass",
+		"/C/xampp/htdocs/js/main.js",
+		"/C/xampp/htdocs/css/sass/main2.sass",
+		"/C/xampp/htdocs/css/sass/img-area.scss",
+		"/C/xampp/htdocs/css/sass/main.sass",
+		"/C/xampp/htdocs/index.htm",
+		"/C/xampp/htdocs/.gitignore",
+		"/C/xampp/htdocs/prepros.cfg",
+		"/C/xampp/htdocs/index-new.htm",
+		"/C/xampp/htdocs/index-m.htm",
+		"/D/Code/demos/cate/pagination.htm",
+		"/D/Flycan/Course/Responsive_Web_Design_2015/5-02 icon-font/index.html",
+		"/D/Flycan/Course/Responsive_Web_Design_2015/5-06 before-after/layout.css",
+		"/D/Flycan/Course/Responsive_Web_Design_2016_practice/練習的範例/4-09 Full-center-1/index.html",
+		"/D/Flycan/Course/Responsive_Web_Design_2016_practice/練習的範例/6-05 Center-Scale-Menu/layout.css",
+		"/D/Flycan/Course/Responsive_Web_Design_2015/7-01 RWD-HomeWork-1/layout.css",
+		"/D/Flycan/Course/Responsive_Web_Design_2015/5-06 before-after/index.html",
+		"/D/Flycan/Course/Responsive_Web_Design_2016_practice/練習的範例/4-09 Full-center-1/layout.css",
+		"/D/Flycan/Course/Responsive_Web_Design_2016_practice/練習的範例/4-08 HD-image-1/index.html",
+		"/D/Flycan/Course/Responsive_Web_Design_2016_practice/練習的範例/4-08 HD-image-1/layout.css",
+		"/D/Flycan/Course/Responsive_Web_Design_2016_practice/練習的範例/4-07 padding-hack/index.html",
+		"/D/Flycan/Course/Responsive_Web_Design_2016_practice/練習的範例/4-07 padding-hack/layout.css",
+		"/D/Flycan/Course/Responsive_Web_Design_2016_practice/練習的範例/4-06 background-size-2/layout.css",
+		"/D/Flycan/Course/Responsive_Web_Design_2016_practice/練習的範例/4-06 background-size-2/index.html",
+		"/D/Flycan/Course/Responsive_Web_Design_2016_practice/練習的範例/4-05 background-size-1/index.html",
+		"/D/Flycan/Course/Responsive_Web_Design_2016_practice/練習的範例/4-05 background-size-1/layout.css",
+		"/D/Flycan/Course/Responsive_Web_Design_2016_practice/練習的範例/4-03 flexible-image-3/index.html",
+		"/D/Flycan/Course/Responsive_Web_Design_2016_practice/練習的範例/4-03 flexible-image-3/layout.css",
+		"/D/Flycan/Course/Responsive_Web_Design_2016_practice/練習的範例/4-02 flexible-image-2/index.html",
+		"/D/Flycan/Course/Responsive_Web_Design_2016_practice/練習的範例/4-02 flexible-image-2/layout.css"
+	],
+	"find":
+	{
+		"height": 52.0
+	},
+	"find_in_files":
+	{
+		"height": 105.0,
+		"where_history":
+		[
+			"D:\\FTC\\ChingChingTest_js\\css\\sass",
+			"D:\\FTC\\ChingChingTest\\css\\sass",
+			"D:\\FTC\\tripitta-frontend\\css",
+			"C:\\xampp\\apache\\",
+			"C:\\xampp\\apache\\conf",
+			"D:\\FTC\\tripitta-frontend",
+			"D:\\tripitta-frontend",
+			"D:\\xampp\\htdocs\\scss",
+			"D:\\xampp\\htdocs\\",
+			"D:\\xampp\\htdocs\\scss",
+			"D:\\xampp\\htdocs\\",
+			"D:\\xampp\\htdocs\\scss",
+			"D:\\xampp\\htdocs\\vertical-timeline\\vertical-timeline",
+			"D:\\xampp\\htdocs\\timeline",
+			"D:\\xampp\\htdocs\\scss",
+			"D:\\xampp\\htdocs\\menu",
+			"D:\\xampp\\htdocs\\scss",
+			"D:\\xampp\\htdocs\\",
+			"D:\\xampp\\htdocs\\scss",
+			"D:\\xampp\\htdocs\\",
+			"D:\\xampp\\htdocs\\scss",
+			"D:\\Flycan\\homesite_speed_ajax\\scss",
+			"D:\\Flycan\\homesite_speed\\scss",
+			"D:\\Flycan\\homesite_speed_ajax\\scss",
+			"D:\\RWD\\Painting\\DW\\sass\\bootstrap",
+			"D:\\RWD\\Painting\\DW",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"loaders",
+			"48%",
+			"sliderSwitch",
+			"476px",
+			"<img src=\"img/head.jpg\" alt=\"\">",
+			"imgkv-arrow-left-copy-2-2x",
+			"z-index",
+			";",
+			"140px;",
+			"140;",
+			"bgCover",
+			"icon-search-copy-",
+			"icon-search-copy-3",
+			"icon-11",
+			"Button",
+			"ul.subTitle",
+			"h3.subTitle",
+			"subTitle",
+			"h1",
+			"section",
+			"more",
+			"love",
+			"f004",
+			"div",
+			"input",
+			"selTag",
+			"itButton",
+			"extend",
+			"%",
+			"0 0 30px 0",
+			"detail",
+			"itineryAbsContent",
+			"484px",
+			"484px;",
+			"366px",
+			"221.222.222.163",
+			"textoverflow",
+			"addIcon",
+			"addicon",
+			"textOverflow",
+			"newest",
+			"multiLineEllipsis",
+			"textOverflow",
+			"itinery:first-child",
+			"22px 18px 14px 30px",
+			"strict",
+			"turnTo",
+			"log",
+			"on(name, cb)",
+			"origin",
+			"thresholdDistance",
+			"thresholdTime",
+			"background-image",
+			"style",
+			"currentCompute",
+			"styleCompute",
+			"respondTo",
+			"wrap",
+			".wrap",
+			"wrap",
+			"landing",
+			"@media only",
+			"itinery:first-child",
+			"order",
+			"    order",
+			"newest",
+			"itinery:first-child",
+			"order",
+			"collection",
+			"best",
+			"28px",
+			"四四",
+			"510",
+			"490",
+			"vmSlider",
+			"turnTo",
+			"slideTo",
+			"div",
+			"slideTo",
+			"events",
+			"init",
+			"momth",
+			"yaer",
+			"_vueSlide2",
+			"slideTo",
+			"h2",
+			"h1",
+			"loadartcile",
+			"hot",
+			"new",
+			"newest",
+			"hot",
+			"• 太平山探索森林 • 太平山小學 • 太平山小學",
+			"\"",
+			"detail",
+			"placeholder",
+			"place",
+			"pla",
+			"placeh",
+			"newest",
+			"itineryNewest",
+			"itinery",
+			"selWrap",
+			"fsiz",
+			"font-size: ",
+			"fsiz",
+			"rem",
+			"font-size",
+			"px",
+			"font-size",
+			"fsiz",
+			"landing",
+			"title",
+			"84px",
+			"470px",
+			"days",
+			"left: -50px",
+			"itinery",
+			"476px",
+			"landing",
+			"textOverflow",
+			"calc",
+			"sliderSwitch",
+			"landing",
+			"days",
+			"img",
+			"20",
+			"days"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"",
+			"ul.subTitle",
+			"h2",
+			"div",
+			"Button",
+			"localhost",
+			"multiLineEllipsis",
+			"background",
+			"四",
+			"month",
+			"year",
+			"subTitle",
+			"title",
+			"• 台北101觀景台 • 四四南村眷村文物館 • 小凱悅南村小吃店 • 四四南村眷村文物館 • 四四南村眷村物...",
+			"+fsiz(",
+			"D:/",
+			"h3",
+			"",
+			"XS",
+			"ecdesign.jpg",
+			"cd-red",
+			"cd-blue",
+			"cd-orange",
+			"$timeline_bg",
+			"timeline_bg",
+			"container-fluid",
+			"row-fluid",
+			"/galereya-master/src/img",
+			"div",
+			"",
+			"fa fa-tags",
+			"fa-coffee",
+			"images/portfolio/full",
+			"2015Calendar",
+			"2015calendar",
+			"calendar",
+			"images/portfolio/full"
+		],
+		"reverse": false,
+		"show_context": false,
+		"use_buffer2": false,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"selected": 7,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "package.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 761,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								164,
+								164
+							]
+						],
+						"settings":
+						{
+							"auto_complete": true,
+							"is_init_dirty_state": false,
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/Theme - SoDaReloaded/settings/langs/npm JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "webpack.config.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 963,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								851,
+								851
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"is_init_dirty_state": false,
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 189.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 302,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								302,
+								302
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"is_init_dirty_state": false,
+							"open_with_edit": true,
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/Babel/JavaScript (Babel).tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/sass/main.sass",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 18,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								18,
+								18
+							]
+						],
+						"settings":
+						{
+							"open_with_edit": true,
+							"syntax": "Packages/Rails/Ruby Haml.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "dist/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 251,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								88,
+								88
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": ".babelrc",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 31,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								31,
+								31
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": ".eslintrc",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 312,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								311,
+								311
+							]
+						],
+						"settings":
+						{
+							"auto_name": "{",
+							"is_init_dirty_state": false,
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "app/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 141,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								112,
+								112
+							]
+						],
+						"settings":
+						{
+							"is_init_dirty_state": false,
+							"open_with_edit": true,
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "note",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 507,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								479,
+								479
+							]
+						],
+						"settings":
+						{
+							"auto_name": "// 按指示初始化 NPM 設定檔 package.json",
+							"is_init_dirty_state": true,
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 29.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 203.0
+	},
+	"output.find_results":
+	{
+		"height": 192.0
+	},
+	"pinned_build_system": "",
+	"project": "ChingChingTest.sublime-project",
+	"replace":
+	{
+		"height": 94.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"D:\\RWD\\123.py.jade"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 58.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"gridb",
+				"gridb"
+			],
+			[
+				"img",
+				"imgholder"
+			]
+		],
+		"width": 392.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 304.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
