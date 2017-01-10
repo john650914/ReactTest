@@ -1,69 +1,111 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { BrowserRouter as Router, Match, Link } from 'react-router';
+import { BrowserRouter as Router, Match, Link, NavigationPrompt, Miss, Redirect } from 'react-router';
 
-const Home = () => (
-	<div>
-		<h1>React-Router v4!</h1>
-		<p>We will be learning about React-Router v4. This example will cover all the new components of react-router.</p>
-		<p>With v4 routes are managed just like any other react component. It offers a "Match" component, which matches the pattern specified in props with the current location/window.pathname.</p>
-		<p>It also provides with the declarative options for Redirects, blocking a transition and Navigation Prompt.</p>
-		<p>We will be covering them all in this example.</p>
-	</div>
-)
-
-class Content extends React.Component{
-	render(){
-		const { location, pattern, pathname, isExact } = this.props;
+class Public extends React.Component {
+	render() {
 		return (
 			<div>
-				<hr/>
-				<h2>This is {this.props.params.LVL}!</h2>
-				{location.query !== null ? <p><strong>Query String: </strong> {JSON.stringify(location.query, null, 2)}</p>:null} {/*這一段完全不知所勻*/}
-				<p>Level內容</p>
+				<h2>Public Page</h2>
+				<p>Everyone can view this page.</p>
 			</div>
 		)
 	}
 }
 
-class BasicRouting extends React.Component{
-	render(){
-		const { location, pattern, pathname, isExact } = this.props;
+
+/////////////////////////////////////////////////////////////////////////
+const fakeAuth = {
+	isAuthenticated: false,
+	authenticate(cb) {
+		this.isAuthenticated = true
+		cb()
+		//setTimeout(cb, 1000) // 為何要非同步呢？
+	},
+	signout(cb) {
+		this.isAuthenticated = false
+		cb()
+		//setTimeout(cb, 1000) // 為何要非同步呢？
+	}
+}
+
+/////////////////////////////////////////////////////////////////////////
+class Login extends React.Component {
+	constructor(props){
+		super(props);
+		this.state = {redirectToReferrer: false};
+		this.login = this.login.bind(this);
+	}
+
+	login() {
+		fakeAuth.authenticate(() => {
+		this.setState({redirectToReferrer: true})
+		})
+	}
+
+	render() {
+		const { from } = this.props.location.state || '/'
+		const { redirectToReferrer } = this.state  
 		return (
 			<div>
-				<h1>BasicRouting</h1>
-				<p>With the help of "Match" Component we can specify the Component we want to render for a particular pattern of the App loction/window.pathname.</p>
-				<p>Select a level from Left Navigation to view the content, also notice the change in URL.</p>
-				<div className="leftNavi">
-					<ul>
-						<li><Link to={pathname +"/level1"} activeClassName="active">Level 1</Link></li>
-						<li><Link to={pathname +"/level2"} activeClassName="active">Level 2</Link></li>
-						<li><Link to={pathname +"/level3"} activeClassName="active">Level 3</Link></li>
-					</ul>
-				</div>
-				<div className="rightContent" style={{border:'1px solid red'}}>
-					<p>Second Level Content will appear here:</p>
-					<Match pattern={`${pathname}/:LVL`} component={Content} />
-				</div>
+				{redirectToReferrer && (
+					<Redirect to={from || '/'}/>
+				)}
+				
+				{from && (
+					<div>
+						<h2>Protected Page</h2>
+						<p>
+							You must log in to view the page at<code>{from.pathname}</code>
+						</p>
+					</div>
+				)}
+				<button onClick={this.login.bind(this)}>Log in</button>
 			</div>
 		)
 	}
 }
 
+/////////////////////////////////////////////////////////////////////////
+class Protected extends React.Component {
+	constructor(props){
+		super(props);
+		this.state = {signedOut: false};
+	}
+
+	render() {
+		const { location, pattern, pathname, isExact, router } = this.props
+		const { signedOut } = this.state  
+		return (
+			<div>
+				{signedOut && (<Redirect to='/'/>)}
+				<h1>Protected Page</h1>
+				<p>You are signed in go back to some other page and come back here.</p>
+				<p>You can sign out to view the login page again.</p>
+				<button onClick={() => {
+					fakeAuth.signout(() => {
+						this.setState({signedOut:true})
+					})
+				}}>Sign out</button>
+			</div>
+		)
+	}
+}
+
+/////////////////////////////////////////////////////////////////////////
 const App = () => (
 	<Router>
 		<div>
 			<ul>
-				<li><Link to="/" activeOnlyWhenExact activeClassName="active">Home</Link></li>
-				<li><Link to="/basic-routing" activeClassName="active">BasicRouting</Link></li>
+				<li><Link activeStyle={{color:'red'}} to="/" activeOnlyWhenExact>Public</Link></li>
+				<li><Link activeStyle={{color:'red'}} to="/protected">Protected</Link></li>
 			</ul>
-			<Match pattern="/" exactly component={Home} />
-			<Match pattern="/basic-routing" component={BasicRouting} />
+			<hr/>
+			<Match exactly pattern="/" component={Public} />
+			<Match pattern="/login" component={Login} />
+			<Match pattern="/protected" render={() => (fakeAuth.isAuthenticated ? (<Protected />) : (<Redirect to={{pathname: '/login',state: { from: '/protected'}}}/>))}/>
 		</div>
 	</Router>
 )
 
-render(
-	<App />,
-	document.getElementById('root')
-);
+render(<App/>, document.getElementById('root'));
