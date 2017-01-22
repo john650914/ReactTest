@@ -2,71 +2,80 @@ import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter as Router, Match, Link, NavigationPrompt, Miss, Redirect } from 'react-router';
 
+//首頁///////////////////////////////////////////////////////////////////////
+const Index = (props) => {
+	return(
+		<div>
+			<h2>這是首頁</h2>
+			<p>首頁也沒什麼好寫的。</p>
+		</div>
+	)
+}
+
+//公開頁/////////////////////////////////////////////////////////////////////
 class Public extends React.Component {
 	render() {
 		return (
 			<div>
-				<h2>Public Page</h2>
-				<p>Everyone can view this page.</p>
+				<h2>公開的頁面</h2>
+				<p>不用登入每個人都可以看的到。</p>
 			</div>
 		)
 	}
 }
 
 
-/////////////////////////////////////////////////////////////////////////
-const fakeAuth = {
-	isAuthenticated: false,
-	authenticate(cb) {
-		this.isAuthenticated = true
-		cb()
-		//setTimeout(cb, 1000) // 為何要非同步呢？
+//驗證機制///////////////////////////////////////////////////////////////////
+const fakeAuth = { //這只是一個物件，用來傳回驗證的結果
+	isAuth: false,
+	authenticate(callBack) {
+		this.isAuth = true
+		// callBack()
+		setTimeout(callBack, 1000)
 	},
-	signout(cb) {
-		this.isAuthenticated = false
-		cb()
-		//setTimeout(cb, 1000) // 為何要非同步呢？
+	signout(callBack) {
+		this.isAuth = false
+		// callBack()
+		setTimeout(callBack, 1000)
 	}
 }
 
-/////////////////////////////////////////////////////////////////////////
+//登入表單///////////////////////////////////////////////////////////////////
 class Login extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {redirectToReferrer: false};
 		this.login = this.login.bind(this);
 	}
-
-	login() {
+	login(e) {
+		e.preventDefault();
 		fakeAuth.authenticate(() => {
-		this.setState({redirectToReferrer: true})
+			this.setState({redirectToReferrer: true})
 		})
 	}
-
 	render() {
 		const { from } = this.props.location.state || '/'
-		const { redirectToReferrer } = this.state  
+		/*const from = this.props.location.state.from || '/'*/
+		const redirectToReferrer = this.state.redirectToReferrer
+		console.dir(this.props);
 		return (
 			<div>
-				{redirectToReferrer && (
-					<Redirect to={from || '/'}/>
-				)}
-				
-				{from && (
-					<div>
-						<h2>Protected Page</h2>
-						<p>
-							You must log in to view the page at<code>{from.pathname}</code>
-						</p>
-					</div>
-				)}
-				<button onClick={this.login.bind(this)}>Log in</button>
+				{redirectToReferrer && <Redirect to={from || '/'}/>}
+				{from &&
+					<form>
+						<fieldset>
+							<legend>會員登入</legend>
+							<p>您必需要登入才能瀏覽「{from}」頁面</p>
+						</fieldset>
+					</form>
+				}
+							<button onClick={this.login}>登入</button>
 			</div>
 		)
 	}
 }
 
-/////////////////////////////////////////////////////////////////////////
+//保護的內容/////////////////////////////////////////////////////////////////
 class Protected extends React.Component {
 	constructor(props){
 		super(props);
@@ -79,31 +88,36 @@ class Protected extends React.Component {
 		return (
 			<div>
 				{signedOut && (<Redirect to='/'/>)}
-				<h1>Protected Page</h1>
-				<p>You are signed in go back to some other page and come back here.</p>
-				<p>You can sign out to view the login page again.</p>
+				<h1>保護的內容</h1>
+				<p>登入成功！您可以瀏覽此頁的內容。</p>
+				<p>試著瀏覽其它頁面再回到這裡，會發現還是保持登入狀態。</p>
+				<p>若要登出請按下方登出按鍵。</p>
 				<button onClick={() => {
 					fakeAuth.signout(() => {
 						this.setState({signedOut:true})
 					})
-				}}>Sign out</button>
+				}}>登出</button>
 			</div>
 		)
 	}
 }
 
-/////////////////////////////////////////////////////////////////////////
+//主元件/////////////////////////////////////////////////////////////////////
 const App = () => (
 	<Router>
 		<div>
 			<ul>
-				<li><Link activeStyle={{color:'red'}} to="/" activeOnlyWhenExact>Public</Link></li>
-				<li><Link activeStyle={{color:'red'}} to="/protected">Protected</Link></li>
+				<li><Link activeStyle={{color:'red'}} to="/public">公開頁</Link></li>
+				<li><Link activeStyle={{color:'red'}} to="/protected">受保護的內容</Link></li>
 			</ul>
-			<hr/>
-			<Match exactly pattern="/" component={Public} />
+			<Match exactly pattern="/" component={Index} />
+			<Match pattern="/public" component={Public} />
 			<Match pattern="/login" component={Login} />
-			<Match pattern="/protected" render={() => (fakeAuth.isAuthenticated ? (<Protected />) : (<Redirect to={{pathname: '/login',state: { from: '/protected'}}}/>))}/>
+			<Match pattern="/protected" render={
+				() => (fakeAuth.isAuth ? <Protected /> : <Redirect to={
+					{pathname: '/login', state: { from: '/protected'}}
+				}/>)
+			}/>
 		</div>
 	</Router>
 )
