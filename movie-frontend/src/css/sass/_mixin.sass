@@ -1,0 +1,345 @@
+//image sprites
+$sprites: "~img/sprites.png"
+
+[class^=img-]
+	background-image: url($sprites)
+	display: inline-block
+
+
+// color
+$colors: (pink: #e7008c)
+
+@function clor($clor, $light, $value)
+	@if $light == 0
+		@return map-get($colors, $clor)
+	@if $light == 1
+		@return lighten(map-get($colors, $clor), $value)
+	@else if $light == 2
+		@return darken(map-get($colors, $clor), $value)
+
+
+// placeholder選擇器
+=placeholder
+	&::-webkit-input-placeholder
+		@content
+	&::-moz-placeholder
+		@content
+	&:-ms-input-placeholder
+		@content
+
+
+// font size
+=fsiz($fs)
+	font-size: $fs/16+rem
+
+
+=bgCover($url: "https://www.tripitta.com/web/img/no-pic.jpg")
+	background: url($url) center no-repeat
+	background-size: cover
+
+
+// overlay 必須高於全部，但是低於popup
+$zIndex: overlay
+@function zindex($zi)
+	@return index($zIndex, $zi)
+
+
+//clear float
+=clearFix
+	content: ""
+	display: block
+	clear: both
+
+
+=selectNew
+	width: 100%
+	height: 100%
+	background-color: transparent
+	-moz-appearance: none
+	-webkit-appearance: none
+	-ms-appearance: none
+	appearance: none
+	border: none
+	outline: none
+	position: relative
+	z-index: 2
+	&::-ms-expand
+		display: none
+
+
+// input type=button
+=btnBasic
+	width: 140px;	height: 42px
+	border: none
+	cursor: pointer
+	background-color: clor(basic, 0,0)
+	outline: none
+	@content;
+	&:active
+		position: relative;	bottom: 1px;	right: 1px
+
+
+// tag A convert to button
+=btnTagA
+	width: 140px;	height: 42px
+	background-color: clor(basic, 0,0)
+	line-height: 3
+	text-align: center
+	text-decoration: none
+	display: block
+	@content
+	&:active
+		position: relative;	bottom: 1px;	right: 1px
+
+
+// errorBlock ul li
+=errorBlock
+	width: 95%
+	background-color: hsl(0, 100%, 96%)
+	border: 1px solid #ebccd1
+	margin: 0 auto
+	margin-top: 15px
+	margin-bottom: 15px
+	padding: 10px
+	>li
+		color: #a94442
+		line-height: 20px
+
+
+//Tag A convert to block default setting
+=defaultTagA
+	height: 30px
+	line-height: 30px
+	text-align: center
+	text-decoration: none
+	color: hsl(0, 0%, 35%)
+	display: inline-block
+
+
+// display flex
+=dfx($flex, $justifyIdx, $alignCtntIdx, $flexDirectIdx, $flexWrapIdx, $alignItemIdx)
+	$justifyContent: flex-start, flex-end, center, space-around, space-between
+	$alignContent: stretch, flex-start, flex-end, center, space-around, space-between
+	$flexDirection: row, row-reverse, column, column-reverse
+	$flexWrap: nowrap, wrap, wrap-reverse
+	$alignItems: stretch, center, flex-start, flex-end, baseline
+
+	@if $flex == "n"
+		display: flex
+		display: -webkit-flex
+	@else if $flex == "i"
+		display: inline-flex
+		display: -webkit-inline-flex
+
+	@if $justifyIdx != "n"
+		justify-content: nth($justifyContent, $justifyIdx)
+		-webkit-justify-content: nth($justifyContent, $justifyIdx)
+
+	@if $alignCtntIdx != "n"
+		align-content: nth($alignContent, $alignCtntIdx)
+		-webkit-align-content: nth($alignContent, $alignCtntIdx)
+
+	@if $flexDirectIdx != "n"
+		flex-direction: nth($flexDirection, $flexDirectIdx)
+		-webkit-flex-direction: nth($flexDirection, $flexDirectIdx)
+
+	@if $flexWrapIdx != "n"
+		flex-wrap: nth($flexWrap, $flexWrapIdx)
+		-webkit-flex-wrap: nth($flexWrap, $flexWrapIdx)
+
+	@if $alignItemIdx != "n"
+		align-items: nth($alignItems, $alignItemIdx)
+		-webkit-align-items: nth($alignItems, $alignItemIdx)
+
+	@content
+
+
+=dfxSub($alignSelfIdx, $flexIdx, $orderNum)
+	$alignSelf: auto, flex-start, flex-end, center, baseline, stretch
+
+	@if $alignSelfIdx != "n"
+		align-self: nth($alignSelf, $alignSelfIdx)
+		-webkit-align-self: nth($alignSelf, $alignSelfIdx)
+
+	@if $flexIdx != "n"
+		flex: $flexIdx
+		-webkit-flex: $flexIdx
+
+	@if $orderNum != "n"
+		order: $orderNum
+		-webkit-order: $orderNum
+
+	@content
+
+
+=dfxGrow($x)
+	flex-grow: $x
+	-webkit-flex-grow: $x
+
+=dfxShrink($x)
+	flex-shrink: $x
+	-webkit-flex-shrink: $x
+
+=dfxBasis($x)
+	flex-basis: $x
+	-webkit-flex-basis: $x
+
+
+
+// popup module
+=popup($zi)
+	width: 340px;
+	margin: 0 auto
+	padding: 64px 20px 20px
+	box-sizing: border-box
+	background-color: white
+	position: fixed;	top: 80px;	left: 0;	right: 0
+	z-index: zindex($zi)
+	display: none
+	.closeBtn
+		width: 30px;	height: 30px
+		background-color: clor(basic, 0, 0)
+		position: absolute;	top: 0;	right: -30px
+		cursor: pointer
+		i
+			margin: 5px 0 0 5px;
+			background-image: url($sprites)
+			display: block;
+	[class$=poplogo]
+		margin: 0 auto;
+		position: absolute;	top: -52px;	left: 0;	right: 0
+		background-image: url($sprites)
+	h4
+		margin-bottom: 20px
+		text-align: center
+		font-size: 1.5rem
+		font-weight: bold
+		color: clor(dark, 0, 0)
+
+
+// circle
+=circle($size, $color: transparent)
+	width: $size+px
+	height: $size+px
+	border-radius: $size+px
+	background-color: $color
+
+
+// popup new module
+=popupNew($classId)
+	padding: 35px 0
+	box-sizing: border-box
+	background-color: white
+	border-radius: 25px
+	display: none
+	z-index: zindex($classId)
+	.closeBtn
+		+circle(24)
+		border: 2px solid black
+		+dfx(n,3,n,n,n,2)
+		cursor: pointer
+		position: absolute
+		top: 10px
+		right: 10px
+	h4
+		margin-bottom: 20px
+		text-align: center
+		+fsiz(30)
+		font-weight: bold
+		color: clor(dark, 0, 0)
+
+
+//文字過長，秀點點點
+=ellipsis
+	overflow : hidden
+	text-overflow : ellipsis
+	white-space : nowrap
+
+
+//隱藏文字
+=hideText
+	text-indent: 101%
+	white-space: nowrap
+	overflow: hidden
+	display: block
+
+
+//多行text-over:ellipsis，注意：容器要是block level
+=multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1, $bgColor: white)
+	overflow: hidden
+	position: relative
+	line-height: $lineHeight
+	max-height: $lineHeight * $lineCount * 0.98
+	text-align: justify
+	text-justify: inter-ideograph
+	margin-right: -1em
+	padding-right: 1em
+	&:before
+		content: "..."
+		position: absolute
+		right: 0.2em
+		bottom: 0
+		background-color: $bgColor
+	&:after
+		content: ""
+		position: absolute
+		right: 0.2em
+		width: 1em
+		height: 1em
+		background: $bgColor
+
+
+//產生三角型
+=triangle($direction, $sizeH, $sizeV, $color)
+	content: ""
+	display: block
+	width: 0
+	height: 0
+	border-style: solid
+	@if $direction == top
+		border-width: 0 $sizeV/2 $sizeH $sizeV/2
+		border-color: transparent transparent $color transparent
+	@if $direction == bottom
+		border-width: $sizeV $sizeH/2 0 $sizeH/2
+		border-color: $color transparent transparent transparent
+	@if $direction == left
+		border-width: $sizeV/2 $sizeH $sizeV/2 0
+		border-color: transparent $color transparent transparent
+	@if $direction == right
+		border-width: $sizeV/2 0 $sizeV/2 $sizeH
+		border-color: transparent transparent transparent $color
+	@if $direction == topright
+		border-width: 0 $sizeH $sizeV 0
+		border-color: transparent $color transparent transparent
+	@if $direction == bottomright
+		border-width: 0 0 $sizeH $sizeV
+		border-color: transparent transparent $color transparent
+	@if $direction == bottomleft
+		border-width: $sizeH 0 0 $sizeV
+		border-color: transparent transparent transparent $color
+	@if $direction == topleft
+		border-width: $sizeH $sizeV 0 0
+		border-color: $color transparent transparent transparent
+
+
+//CSS3漸層(這個版本只有從top到bottom的漸層)
+=linear-gradient($top-colr, $bottom-colr)
+	background: $top-colr
+	background: -moz-linear-gradient(top, $top-colr 0%, $bottom-colr 100%)
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$top-colr), color-stop(100%,$bottom-colr))
+	background: -webkit-linear-gradient(top, $top-colr 0%,$bottom-colr 100%)
+	background: -o-linear-gradient(top, $top-colr 0%,$bottom-colr 100%)
+	background: -ms-linear-gradient(top, $top-colr 0%,$bottom-colr 100%)
+	background: linear-gradient(to bottom, $top-colr 0%,$bottom-colr 100%)
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 )
+
+
+// 清理外觀
+=appearance-none
+	border:none
+	outline:none
+	-moz-appearance:none
+	-webkit-appearance:none
+	appearance:none
+	&::-ms-expand
+		display: none
