@@ -22,7 +22,7 @@ module.exports = {
 				}
 			},
 			{
-				test: /(\.sass$|\.scss$)/,
+				test: /(\.sass$|\.scss$|\.css$)/,
 				loader: ExtractTextPlugin.extract('css?sourceMap!autoprefixer!sass')
 			},
 			{
