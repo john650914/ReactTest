@@ -5,7 +5,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	devtool: 'source-map',
-	entry: './src/index',
+	entry: './src/index', //要再加入polyfill
 	output: {
 		path: path.join(__dirname, 'dist'),
 		filename: 'bundle.js',

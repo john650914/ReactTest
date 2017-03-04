@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import "./style/img/bg.png"
 
 
 class Apple extends React.Component{
