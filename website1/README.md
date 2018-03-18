@@ -1,10 +1,10 @@
-# 練習 1 說明：#
+#練習 1 說明：#
 
 用 node.js 來設置前端開發環境，這個練習使用了 webpack 做 bundler，webpack-dev-server 做開發伺服器，並設定 react 的 loader 及 html-webpack-plugin 的 plugin。
-###初始化專案 ( 建立 package.json 檔 )：###
+### 初始化專案 ( 建立 package.json 檔 )：
     npm init
 
-###安裝所需要的 package：###
+### 安裝所需要的 package：
     npm i --save-dev babel-core babel-loader babel-preset-es2015 babel-preset-react eventsource-polyfill html-webpack-plugin react react-dom webpack webpack-dev-server
 
  - babel-core babel-loader babel-preset-es2015 babel-preset-react<br>ES6 compiler
@@ -19,8 +19,8 @@
 
  - webpack-dev-server<br>webpack-dev-server
 
-###新增「src」資料夾及主文件「index.html」###
-####index.html 內容：####
+### 新增「src」資料夾及主文件「index.html」
+### #index.html 內容：#
 ~~~html
 <!DOCTYPE html>
 <html>
@@ -35,8 +35,8 @@
 </html>
 ~~~
 
-###編寫 React component - 在「src」內繼續新增「index.js」、「apple.jsx」兩個檔案###
-####index.js 內容：####
+### 編寫 React component - 在「src」內繼續新增「index.js」、「apple.jsx」兩個檔案
+### #index.js 內容：#
 ~~~javascript
 import Apple from './apple.jsx';
 ~~~
@@ -54,7 +54,7 @@ class Apple extends React.Component{
 ReactDOM.render(<Apple />,document.getElementById('fruit'))
 ~~~
 
-###建立webpack設定檔 - 在根目錄建立 webpack.config.js 檔：###
+### 建立webpack設定檔 - 在根目錄建立 webpack.config.js 檔：
 ~~~javascript
 var path = require('path');
 var webpack = require('webpack');
@@ -91,14 +91,14 @@ module.exports = {
 };
 ~~~
 
-###監聽專案：###
+### 監聽專案：
     npm run dev
 我們可以在http://localhost:8080/webpack-dev-server/看到執行的結果
 
-###打包專案：###
+### 打包專案：
     npm run build
 
-###以上，一個基本的開發環境就建立完成，後續的練習將再帶入其它設定，例如：###
+### 以上，一個基本的開發環境就建立完成，後續的練習將再帶入其它設定，例如：
 - Multiple react Component的操作
 - 安裝sass/scss loader
 - Hot Reloading
