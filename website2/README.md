@@ -1,9 +1,9 @@
-#練習 2 說明：#
+# 練習 2 說明：
  - 在 webpack 中使用 sass 來撰寫 CSS，並加入 sourceMap 幫助開發
  - 產生實體的 CSS 檔而不是埋在 Javascript 裡
  - 在 sass 及 react 加入圖檔
 
-###安裝所需要的 package：###
+### 安裝所需要的 package：
     npm i --save-dev css-loader extract-text-webpack-plugin node-sass sass-loader style-loader url-loader autoprefixer-loader
 
  - style-loader 自動將 CSS 檔的內容插入到頁面有 require CSS 的地方，並用 &lt;style&gt; 包住（require 可載入 CSS 了）
@@ -15,7 +15,7 @@
  - sass-loader（若安裝 sass-loader 不成功需加裝 node-sass）
  - autoprefixer-loader 則是自動產生各種瀏覽器專用的語法，例如 display: flex 輸出就就會自動加上 -webkit-、-ms- 等的 prefix
 
-###修改 webpack.config.js： ###
+### 修改 webpack.config.js： 
 ~~~javascript
 var path = require('path');
 var webpack = require('webpack');
@@ -70,11 +70,11 @@ module.exports = {
 };
 ~~~
 
-###新增下列圖檔：###
+### 新增下列圖檔：
  - src/images/smile.png
  - src/style/img/puppy.jpg
 
-###新增 src/style/main.sass 及編輯其內容：###
+### 新增 src/style/main.sass 及編輯其內容：
 ~~~sass
 *
     border: 1px solid blue
@@ -83,7 +83,7 @@ module.exports = {
     height: 500px
 ~~~
 
-###編輯 apple.jsx：###
+### 編輯 apple.jsx：
 ~~~jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -104,7 +104,7 @@ class Apple extends React.Component{
 ReactDOM.render(<Apple />,document.getElementById('fruit'));
 ~~~
 
-###編輯 apple.jsx：###
+### 編輯 apple.jsx：
 ~~~js
 import Apple from './apple.jsx';
 import './style/main.sass';
