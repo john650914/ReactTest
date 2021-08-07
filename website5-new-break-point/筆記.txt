@@ -1,0 +1,204 @@
+在這個目錄開啟CMD
+
+輸入npm init來初始化專案（建立package.json檔）
+
+一路enter
+
+安裝套件：繼續輸入：npm i -g --save-dev webpack webpack-cli webpack-dev-server
+
+結果有全域安裝，但test01目錄裡的package.json沒有devDependencies記錄，看來上面的--save-dev不需要了
+
+再試一次安裝專案目錄：npm i --save-dev webpack webpack-cli webpack-dev-server
+
+結果專案裡出現node_modules目錄，package.json的devDependencies也出現那三個套件了
+
+那看網路教學說要全域安裝是為什麼呢？
+
+（後來有看到有人說：webpack-dev-server是一個靜態資源伺服器，只用於開發環境，你需要在本機和全域安裝）
+
+現在有了打包工具和開發server
+
+接下來開始安裝bable：npm i --save-dev @babel/core @babel/preset-env babel-loader
+
+package.json裡也看到了
+
+新增webpack.config.dev.js，內容先寫成這樣：
+
+const path = require('path');
+
+$	module.exports = {
+$		mode: 'production',
+$		devtool: 'source-map',
+$		context: path.resolve(__dirname, 'src'),
+$		entry: ['./assets/js/index.js'],
+$		output: {
+$			path: path.resolve(__dirname, 'dist'),
+$			filename: 'assets/js/index.js'
+$		},
+$		module: {
+$			rules: [
+$				{
+$					test: /\.js$/i,
+$					exclude: /node_modules/,
+$					use: {
+$						loader: 'babel-loader',
+$						options: {
+$							presets: ['@babel/preset-env']
+$						}
+$					}
+$				}
+$			]
+$		}
+$	};
+
+好緊張喔
+
+新增src/assets/js目錄，再新增index.js，內容先寫成這樣：
+
+$	var alertMsg = m => alert(m);
+$	alertMsg(123456);
+
+好緊張喔
+
+新增dist目錄（不知道是不是必要？）
+
+回去修改package.json，在scripts中加入"build": "webpack --config webpack.config.prod.js"
+
+在CMD中輸入npm run build
+
+太好了，dist目錄中確實出現了assets/js/index.js，而且看起來有編譯成ES5，但上面的範例看起來不太好，輸出的結果變成
+
+$	alert(123456);
+$	//# sourceMappingURL=index.js.map
+
+alertMsg()直接不見了，我看來寫複雜一點好了，把index.js內容換成：
+
+$	var adder = (n1, n2) => {
+$		if(!n1){
+$			throw new Error('n1 is required');
+$		}
+$		if(!n2){
+$			throw new Error('n2 is required');
+$		}
+$		return n1+n2;
+$	}
+$	var muler = (n1, n2) => {
+$		if(!n1){
+$			throw new Error('n1 is required');
+$		}
+$		if(!n2){
+$			throw new Error('n2 is required');
+$		}
+$		return n1*n2;
+$	}
+$	
+$	alert(`the result is ${adder(1,2)+muler(1,2)}`);
+
+來輸出，結果變成：
+
+$	alert("the result is ".concat(5));
+$	//# sourceMappingURL=index.js.map
+
+.......無言...
+
+再來建開發環境：新增webpack.config.dev.js，並加入內容：
+
+const path = require('path');
+
+$   module.exports = {
+$   	mode: 'development',
+$   	devtool: 'inline-source-map',
+$   	context: path.resolve(__dirname, 'src'),
+$   	devServer: {
+$   		contentBase: path.join(__dirname, 'dist'),
+$   		port: 9000,
+$   		hot: true,
+$   		open: true,
+$   		openPage: './index.html'
+$   	},
+$   	entry: ['./assets/js/index.js'],
+$   	output: {
+$   		path: path.resolve(__dirname, 'dist'),
+$   		filename: 'assets/js/index.js'
+$   	},
+$   	module: {
+$   		rules: [
+$   			{
+$   				test: /\.js$/i,
+$   				exclude: /node_modules/,
+$   				use: {
+$   					loader: 'babel-loader',
+$   					options: {
+$   						presets: ['@babel/preset-env']
+$   					}
+$   				}
+$   			}
+$   		]
+$   	}
+$   };
+
+在package.json的scripts中加入：
+
+"watch": "webpack-dev-server --config webpack.config.dev.js",
+
+執行npm run watch
+
+結果報錯了，查了一下如果用webpack-cli 4或webpack 5，要把package.json scripts中的webpack-dev-server改成「webpack serve」也就是：
+
+"watch": "webpack serve --config webpack.config.dev.js",
+
+再執行一次npm run watch就好了
+
+來修改一下index.js測試一下有沒有hot reload
+
+成功
+
+試試看一開始沒有dist資料夾然後執行npm run build
+
+嗯，node.js會自己產生dist目錄
+
+##########################################################################################################################
+
+接下來安裝html-webpack-plugin，另外試試更新html檔時會hot reload嗎？
+
+同樣執行：npm i --save-dev html-webpack-plugin
+
+在webpack.config.prod.js及webpack.config.dev.js中加入下列語法：
+
+$   const HtmlWebpackPlugin = require('html-webpack-plugin');
+$   module.exports = {
+$       ..........
+$       ,
+$   	plugins: [
+$   		new HtmlWebpackPlugin({
+$   			filename: 'index.html',
+$   			template: './index.html',
+$   			inject: true
+$   		})
+$   	]
+$   }
+
+刪除dist中的所有內容
+
+在scr目錄中新增index.html
+
+$   <!DOCTYPE HTML>
+$   <html>
+$   <head>
+$   <title>HTML5</title>
+$   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+$   </head>
+$   <body>
+$   <h1>測試喔！</h1>
+$   </body>
+$   </html>
+
+npm run watch看看
+
+成功，現在記憶體中的index.js及index.html都能被瀏覽器執行了
+
+但直接修改src的html檔不會hot reload，查了很久，一個比較好的做法就是將contentBase改成src，在devServer裡加入watchContentBase: true
+
+我本來就覺得dev的contentBase要是src，但大部份的教學都指向dist，真是不太明白
+
+實測後果然html有hot reload了
