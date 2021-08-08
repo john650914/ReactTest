@@ -105,37 +105,37 @@ $	//# sourceMappingURL=index.js.map
 
 const path = require('path');
 
-$   module.exports = {
-$   	mode: 'development',
-$   	devtool: 'inline-source-map',
-$   	context: path.resolve(__dirname, 'src'),
-$   	devServer: {
-$   		contentBase: path.join(__dirname, 'dist'),
-$   		port: 9000,
-$   		hot: true,
-$   		open: true,
-$   		openPage: './index.html'
-$   	},
-$   	entry: ['./assets/js/index.js'],
-$   	output: {
-$   		path: path.resolve(__dirname, 'dist'),
-$   		filename: 'assets/js/index.js'
-$   	},
-$   	module: {
-$   		rules: [
-$   			{
-$   				test: /\.js$/i,
-$   				exclude: /node_modules/,
-$   				use: {
-$   					loader: 'babel-loader',
-$   					options: {
-$   						presets: ['@babel/preset-env']
-$   					}
-$   				}
-$   			}
-$   		]
-$   	}
-$   };
+$	module.exports = {
+$		mode: 'development',
+$		devtool: 'inline-source-map',
+$		context: path.resolve(__dirname, 'src'),
+$		devServer: {
+$			contentBase: path.join(__dirname, 'dist'),
+$			port: 9000,
+$			hot: true,
+$			open: true,
+$			openPage: './index.html'
+$		},
+$		entry: ['./assets/js/index.js'],
+$		output: {
+$			path: path.resolve(__dirname, 'dist'),
+$			filename: 'assets/js/index.js'
+$		},
+$		module: {
+$			rules: [
+$				{
+$					test: /\.js$/i,
+$					exclude: /node_modules/,
+$					use: {
+$						loader: 'babel-loader',
+$						options: {
+$							presets: ['@babel/preset-env']
+$						}
+$					}
+$				}
+$			]
+$		}
+$	};
 
 在package.json的scripts中加入：
 
@@ -165,33 +165,33 @@ $   };
 
 在webpack.config.prod.js及webpack.config.dev.js中加入下列語法：
 
-$   const HtmlWebpackPlugin = require('html-webpack-plugin');
-$   module.exports = {
-$       ..........
-$       ,
-$   	plugins: [
-$   		new HtmlWebpackPlugin({
-$   			filename: 'index.html',
-$   			template: './index.html',
-$   			inject: true
-$   		})
-$   	]
-$   }
+$	const HtmlWebpackPlugin = require('html-webpack-plugin');
+$	module.exports = {
+$		 ..........
+$		 ,
+$		plugins: [
+$			new HtmlWebpackPlugin({
+$				filename: 'index.html',
+$				template: './index.html',
+$				inject: true
+$			})
+$		]
+$	}
 
 刪除dist中的所有內容
 
 在scr目錄中新增index.html
 
-$   <!DOCTYPE HTML>
-$   <html>
-$   <head>
-$   <title>HTML5</title>
-$   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-$   </head>
-$   <body>
-$   <h1>測試喔！</h1>
-$   </body>
-$   </html>
+$	<!DOCTYPE HTML>
+$	<html>
+$	<head>
+$	<title>HTML5</title>
+$	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+$	</head>
+$	<body>
+$	<h1>測試喔！</h1>
+$	</body>
+$	</html>
 
 npm run watch看看
 
@@ -202,3 +202,43 @@ npm run watch看看
 我本來就覺得dev的contentBase要是src，但大部份的教學都指向dist，真是不太明白
 
 實測後果然html有hot reload了
+
+==========================================================================================================================
+練習的目錄搬家了（放到github的ReactTest裡的website5），現在套件都沒了，所以再使用npm i安裝所有套件
+==========================================================================================================================
+
+來測試一下javascript模組：
+
+新增一個myModule.js
+
+輸入：
+
+$	//先測CommonJS的Module
+$	const myFN1 = (a) => console.log(a);
+$	module.exports = myFN1;
+
+然後在index.js輸入
+
+$	//先測CommonJS的Module
+$	const myFN1 = require('./myModule.js');
+$	myFN1(111);
+
+npm run watch就會看到111了
+
+再改測試ES6的模組：
+
+在myModule.js中輸入：
+
+$	//再測試ES6的Module
+$	export const myFN2 = (a) => console.log(a);
+$	export default myFN2;
+
+然後在index.js輸入
+
+$	//測試ES6的Module
+$	import myFN2 from './myModule.js'
+$	myFN2(222);
+
+npm run watch就會看到222了
+
+PS，在測的過程發現CommonJS和ES6的寫法不能同時存在會報錯，用node.js就用CommonJS的寫法吧
