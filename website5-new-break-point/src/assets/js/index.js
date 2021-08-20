@@ -1,4 +1,6 @@
-﻿/* const adder = (n1, n2) => {
+﻿import '../css/default.css'; //看來寫成require('../css/default.css');也可以
+
+/* const adder = (n1, n2) => {
 	if(!n1){
 		throw new Error('n1 is required');
 	}

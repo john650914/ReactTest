@@ -242,3 +242,85 @@ $	myFN2(222);
 npm run watch就會看到222了
 
 PS，在測的過程發現CommonJS和ES6的寫法不能同時存在會報錯，用node.js就用CommonJS的寫法吧
+
+##########################################################################################################################
+
+現在來測試寫CSS
+
+npm i --save-dev css-loader style-loader
+
+新增目錄及css檔
+
+/src/assets/css/default.css
+
+隨便新增點內容：*{border: 1px solid red;}
+
+編輯webpack.config.dev.js，加入：
+
+rules: [
+	{
+		test: /\.css$/i,
+		use: ['style-loader', 'css-loader']
+	}
+]
+
+編輯index.js，加入：
+
+import '../css/default.css'; //看來寫成require('../css/default.css');也可以
+
+npm run watch
+
+成功了ㄟ！現在畫面都被畫上紅線了，但現在看html是直接插入<style>標籤
+
+先不管<style>標籤這件事，先來測看看開發版是不是一樣加入標籤
+
+編輯webpack.config.prod.js，加入：
+
+rules: [
+	{
+		test: /\.css$/i,
+		use: ['style-loader', 'css-loader']
+	}
+]
+
+npm run build
+
+去看了dist資料夾，結果一樣是插入<style>標籤，而且sourceMap也還是留著
+
+先來讓default.css可以輸出實體檔案
+
+看起來需要使用mini-css-extract-plugin
+
+首先將style-loader解除安裝
+
+npm un style-loader
+
+再安裝mini-css-extract-plugin
+
+npm i mini-css-extract-plugin -D
+
+然後編輯webpack.config.dev.js：
+
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+...............
+module.exports = {
+	...............
+	module: {
+		rules: [
+			{
+				test: /\.css$/i,
+				use: [MiniCssExtractPlugin.loader, 'css-loader']
+			}
+		]
+	},
+	plugins: [
+		new MiniCssExtractPlugin(),
+		...............
+	]
+}
+
+npm run watch看看，覺得會有問題…
+
+結果有成功ㄟ，但他產了一個main.css，可是我的檔名是及目錄是：assets/css/default.css，反正plugins那邊有參數可以設定，先來看下面這個連結
+
+https://awdr74100.github.io/2020-03-02-webpack-minicssextractplugin/
