@@ -16,6 +16,8 @@
 
 （後來有看到有人說：webpack-dev-server是一個靜態資源伺服器，只用於開發環境，你需要在本機和全域安裝）
 
+（再回來補充，後來換一台電腦run專案，結果html沒有hot reload，查了一下發現沒有全域的webpack，全域裝了webpack就好了）
+
 現在有了打包工具和開發server
 
 接下來開始安裝bable：npm i --save-dev @babel/core @babel/preset-env babel-loader
@@ -103,7 +105,7 @@ $	//# sourceMappingURL=index.js.map
 
 再來建開發環境：新增webpack.config.dev.js，並加入內容：
 
-const path = require('path');
+$	const path = require('path');
 
 $	module.exports = {
 $		mode: 'development',
@@ -266,7 +268,7 @@ rules: [
 
 編輯index.js，加入：
 
-import '../css/default.css'; //看來寫成require('../css/default.css');也可以
+import '../css/default.css'; //使用ESM方式引入，但後來試了一下寫成require('../css/default.css');也可以
 
 npm run watch
 
@@ -321,6 +323,479 @@ module.exports = {
 
 npm run watch看看，覺得會有問題…
 
-結果有成功ㄟ，但他產了一個main.css，可是我的檔名是及目錄是：assets/css/default.css，反正plugins那邊有參數可以設定，先來看下面這個連結
+結果有成功ㄟ，來試一下輸出圖片
 
-https://awdr74100.github.io/2020-03-02-webpack-minicssextractplugin/
+新增目錄：src\assets\css\img，並加入dora.png
+
+在index.html中加入<div class="test"></div>
+
+在default.css中加入
+
+.test{
+    width: 205px;
+    height: 204px;
+    background: url(img/dora.png) 50% 50% no-repeat;
+}
+
+npm run watch
+
+網頁中看到哆拉A夢了
+
+現在修改一下webpack.config.prod.js內容，把style-loader拔掉，另外加入mini-css-extract-plugin
+
+npm run build
+
+dist目錄中確實出現哆拉A夢的圖了，但是以亂數命名，之後再來看一下檔名怎麼設定
+
+但現在看dist目錄中跟src目錄都不同，例如現在mini-css-extract-plugin產了一個main.css，可是我的檔名是及目錄是：assets/css/default.css
+
+但使用開發工具看樣式來源確實是default.css，真是奇怪，應該是他預設產的map檔中的設定，來修改一下plugins那邊的參數好了
+
+經過了一番研究，可以用chunk的方式將不同檔案分離出來，可以參考一下這個網址：
+
+https://stackoverflow.com/questions/54267580/what-is-the-purpose-of-chunkfilename-of-mini-css-extract-plugin-module
+
+然後試著去調整webpack.config.prod.js：
+
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+module.exports = {
+	mode: 'production',
+	//devtool: 'source-map',
+	context: path.resolve(__dirname, 'src'),
+	entry: ['./assets/js/index.js'],
+	output: {
+		path: path.resolve(__dirname, 'dist'),
+		filename: 'assets/js/default.js'
+	},
+	module: {
+		rules: [
+			{
+				test: /\.js$/i,
+				exclude: /node_modules/,
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: ['@babel/preset-env']
+					}
+				}
+			},
+			{
+				test: /\.css$/i,
+				use: [MiniCssExtractPlugin.loader, 'css-loader']
+			}
+		]
+	},
+	optimization: {
+		splitChunks: {
+			cacheGroups: {
+				style1: {
+					name: 'common',
+					test: /common\.css$/,
+					chunks: 'all',
+					enforce: true
+				},
+				style2: {
+					name: 'dora',
+					test: /dora\.css$/,
+					chunks: 'all',
+					enforce: true
+				}
+			}
+		}
+	},
+	plugins: [
+		new MiniCssExtractPlugin({
+			filename: 'assets/css/[name].css',
+			chunkFilename: 'chunk-[id].css'
+		}),
+		new HtmlWebpackPlugin({
+			filename: 'index.html',
+			template: './index.html',
+			inject: 'body'
+		})
+	]
+};
+
+然後src中新增dora.css
+
+index.js中新增import '../css/page-dora.css';
+
+npm run build
+
+去看dist資料夾，如此輸出後就不會是main.css，而是成功拆成default.css及dora.css檔個檔
+
+這樣的做法確實可以精準的得到輸出結果，但設定有夠麻煩，還是先不要這樣做好了（如果未來要需要把CSS分的這麼詳細也會是在不同頁面，而不同頁面只要設定不同的載入點再import不同的CSS就可以了）
+
+所以先把webpack.config.prod.js的內容調回上一版
+
+************* 這裡發現一個問題，在watch的時候只要css或js寫錯，例如語法錯，圖片連結錯誤，HMR會失效（瀏覽器就不會更新了），要再去找看哪裡出問題了 *************
+
+現在先來解決圖檔位置的問題；因為現在哆拉A夢的圖會輸出在dist資料夾第一層，看起來很不爽，而且build起來的網頁html及js裡的路徑會抓不到正確的路徑
+
+另外css-loader輸出的圖檔也都會變亂碼
+
+應該是要使用file-loader來處理吧
+
+安裝：npm install file-loader -D
+
+然後設定webpack.config.prod.js，接著開始寫CSS的background-image
+
+結果怎麼試都無法輸出正確的結果，圖檔有輸出我要的檔名，但同時在根目錄css-loader又輸出一個檔名亂碼的圖檔，然後這個亂碼圖檔還是壞的，CSS內的的url也使終指向這個壞掉的圖檔
+
+查了非常多資料都沒用，卡了兩天真是令人沮喪，但不能放棄，偶然看到下面那一個網頁，裡面有人問檔案輸出的問題，順便就看了一下他的webpack-config設定
+
+https://github.com/webpack-contrib/mini-css-extract-plugin/issues/691
+
+結果他不用file-loader，他用了webpack自帶的asset模組，這個我之前也有這樣試過，但他多了filename的設定，試了他的filename設定一切都順暢了
+
+{
+	test: /\.(jpe?g|png|gif|svg)$/i,
+	type: 'asset/resource',
+	generator: {
+		filename: '[path][name][ext]'
+	}
+}
+
+不過我在CSS裡寫的是url(../img/dora.png)，打包後變成url(../../assets/img/dora.png)，而且不知道該怎麼調整，以後再來看這個問題吧
+
+另外webpack的asset模組好像沒有outputPath以及publicPath可以設定，這樣要圖片要怎麼上CDN啊？以後再來看這個問題吧
+
+現在來測javascript裡加入圖檔，在index.js裡輸入：
+
+var nobiImg = new Image();
+nobiImg.src = require('../img/nobi.png');
+document.querySelector('body').appendChild(nobiImg);
+
+npm run build
+
+打開dist的網頁就會看到大雄的圖片了，但網址又更奇怪了：
+
+<img src="file:///D:/github/ReactTest/website5-new-break-point/dist/assets/js/../../assets/img/nobi.png">
+
+雖然可以看，但未來可能是個大問題
+
+再來測html中加入圖片，在index.html中加入：
+
+<img src="assets/img/gian.jpg" />
+
+npm run build
+
+打開dist的網頁發現圖片並沒有輸出，變成破圖了
+
+解決方式：裝html-loader
+
+npm install --save-dev html-loader
+
+調整webpack.config.prod.js：
+
+rules: [
+	{
+		test: /\.html$/i,
+		loader: "html-loader",
+	}
+]
+
+npm run build
+
+打包檔出現技安的圖片了
+
+關於前面發現路徑很奇怪的事，在webpack.config.prod.js中調整publicPath可以得到稍微的改善，有兩個要調整的地方：
+
+1. module.exports.output.publicPath <= 這個指的是所有資源最前面的公開路徑，例如「http://www.some-cdn.com/」或是「./」的相對路徑
+
+2. MiniCssExtractPlugin的options.publicPath <= 這個指的是我們存放檔案的目錄路徑，例如「assets/img」，或是「../」的相對路徑
+
+webpack.config.prod.js設定方式：
+
+const ASSET_PATH = process.env.ASSET_PATH || './';
+
+module.exports = {
+	.....
+	output: {
+		.....
+		publicPath: ASSET_PATH
+	},
+	module: {
+		rules: [
+			.....
+			{
+				test: /\.css$/i,
+				exclude: /node_modules/,
+				use: [
+					{
+						loader: MiniCssExtractPlugin.loader,
+						options: {
+							publicPath: '../../'
+						}
+					}, 'css-loader'
+				]
+			}
+		]
+	}
+}
+
+npm run build
+
+開啟index.html後可以看到html中的圖片路徑都變成：
+<img src="./assets/img/gian.jpg">
+<img src="./assets/img/nobi.png">
+
+看起來比較舒服了，但CSS中的路徑還是稍微怪怪的（但還能接受啦）：
+
+background: url(../../assets/css/img/dora.png) 50% 50% no-repeat;
+
+////////
+
+前面做了這麼多打包的測試，一直產出dist又要一直刪，實在麻煩，使用clean-webpack-plugin吧
+
+先保留之前打包的dist資料夾不要刪掉
+
+npm install --save-dev clean-webpack-plugin
+
+webpack.config.prod.js中加入：
+
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+.....
+plugins: [
+	new CleanWebpackPlugin(),
+	.....
+]
+
+然後把index.html中的<img src="assets/img/gian.jpg" />註解掉
+
+npm run build
+
+然後去看dist\assets\img中的技安圖就不見了
+
+##########################################################################################################################
+
+前面都在搞上線版的webpack config檔，現在回來完善一下開發版的config檔吧
+
+改了幾個地方大概記錄一下：
+
+module.exports.devServer的設定在webpack5有點不一樣了，更新寫法
+MiniCssExtractPlugin加入publicPath
+加入webpack的asset模組來載入圖檔
+加入html-loader
+plugin的MiniCssExtractPlugin加入filename設定
+
+另外測一下編輯html內容可以直接HMR
+
+另外測一下index.js裡寫錯語法HMR也不會斷掉了，而且webpack直接把錯誤印在瀏覽器畫面上了
+
+先把改完的內容貼到下面：
+
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+module.exports = {
+	mode: 'development',
+	devtool: 'inline-source-map',
+	context: path.resolve(__dirname, 'src'),
+	devServer: {
+		static: {
+			directory: path.join(__dirname, 'src'),
+			watch: true,
+		},
+		port: 9000,
+		hot: true,
+		open: 'index.html'
+	},
+	entry: ['./assets/js/index.js'],
+	output: {
+		path: path.resolve(__dirname, 'dist'),
+		filename: 'assets/js/default.js'
+	},
+	module: {
+		rules: [
+			{
+				test: /\.js$/i,
+				exclude: /node_modules/,
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: ['@babel/preset-env']
+					}
+				}
+			},
+			{
+				test: /\.css$/i,
+				exclude: /node_modules/,
+				use: [
+					{
+						loader: MiniCssExtractPlugin.loader,
+						options: {
+							publicPath: '../../'
+						}
+					}, 'css-loader'
+				]
+			},
+			{
+				test: /\.(jpe?g|png|gif|svg)$/i,
+				exclude: /node_modules/,
+				type: 'asset/resource',
+				generator: {
+					filename: '[path][name][ext]'
+				}
+			},
+			{
+				test: /\.html$/i,
+				loader: 'html-loader'
+			}
+		]
+	},
+	plugins: [
+		new MiniCssExtractPlugin({
+			filename: 'assets/css/[name].css'
+		}),
+		new HtmlWebpackPlugin({
+			filename: 'index.html',
+			template: './index.html',
+			inject: 'body'
+		})
+	]
+};
+
+##########################################################################################################################
+
+來寫Sass吧
+
+npm install sass-loader node-sass -D
+
+修改webpack.config.prod.js及webpack.config.dev.js
+
+將default.css改成default.scss
+
+修改default.scss內容：
+
+$btnColor: #0060ce;
+.btn{
+	.....
+	background: $btnColor;
+	.....
+}
+
+index.js中將default.css改成default.scss
+
+npm run watch
+
+成功，去改default.scss也有HMR
+
+npm run build
+
+成功，打包正常
+
+不過發現一個問題，prod打包的網頁html碼會變成一整排跟dev不一樣，這造成一個問題，html碼有換行的時候會出現空格，html元素display成inline-block時樣式會有問題
+
+去改HtmlWebpackPlugin的參數，加入minify: false
+
+plugins: [
+	new HtmlWebpackPlugin({
+		.....
+		minify: false
+	})
+]
+
+官方文件說：true if mode is 'production', otherwise false
+
+npm run build
+
+打包後的html文件沒有不會壓縮成一行了
+
+##########################################################################################################################
+
+來寫css前綴
+
+去default.scss和page-dora.css裡加一些CSS3或是很新的樣式，像是display:flex;、filter:blur(1px);、appearance:none;之類的
+
+npm install autoprefixer postcss-loader --save-dev
+
+修改webpack.config.prod.js及webpack.config.dev.js：
+
+{
+	test: /\.(sass|scss|css)$/i,
+	exclude: /node_modules/,
+	use: [
+		{
+			loader: MiniCssExtractPlugin.loader,
+			options: {
+				publicPath: '../../'
+			}
+		},
+		'css-loader',
+		'sass-loader',
+		{
+			loader: 'postcss-loader',
+			options: {
+				postcssOptions: {
+					plugins: [
+						'autoprefixer'
+					]
+				}
+			}
+		}
+	]
+}
+
+npm install --save-dev browserslist
+
+修改package.json：
+
+{
+	.....
+	"browserslist": [
+		"last 2 version",
+		"> 1%",
+		"IE 10"
+	]
+}
+
+npm run build 或是 npm run watch
+
+在瀏覽器中觀察像是display:flex;就會變成：
+
+display: -webkit-box;
+display: -ms-flexbox;
+display: flex;
+
+##########################################################################################################################
+ 
+突然發現commonJS的require不能用了！
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+有webpack教學：https://awdr74100.github.io/page/5/
+
+https://ithelp.ithome.com.tw/articles/10200329

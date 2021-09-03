@@ -1,0 +1,33 @@
+.dora{
+	width: 205px;
+	height: 204px;
+	background: url(img/dora.png) 50% 50% no-repeat;
+	display: inline-block;
+}
+
+.flex-div{
+	height: 100px;
+	margin: 20px 0;
+	display: flex;
+}
+.flex-div > div{
+	padding: 12px 18px;
+	color: #fff;
+	flex: 1;
+}
+.div1{
+	background: red;
+}
+.div2{
+	background: blue;
+}
+.div3{
+	background: green;
+}
+.div4{
+	background: gray;
+}
+.div5{
+	background: orange;
+	appearance: none;
+}

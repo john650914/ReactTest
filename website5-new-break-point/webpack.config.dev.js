@@ -7,12 +7,13 @@ module.exports = {
 	devtool: 'inline-source-map',
 	context: path.resolve(__dirname, 'src'),
 	devServer: {
-		contentBase: path.join(__dirname, 'src'),
-		watchContentBase: true,
+		static: {
+			directory: path.join(__dirname, 'src'),
+			watch: true,
+		},
 		port: 9000,
 		hot: true,
-		open: true,
-		openPage: './index.html'
+		open: 'index.html'
 	},
 	entry: ['./assets/js/index.js'],
 	output: {
@@ -32,13 +33,47 @@ module.exports = {
 				}
 			},
 			{
-				test: /\.css$/i,
-				use: [MiniCssExtractPlugin.loader, 'css-loader']
+				test: /\.(sass|scss|css)$/i,
+				exclude: /node_modules/,
+				use: [
+					{
+						loader: MiniCssExtractPlugin.loader,
+						options: {
+							publicPath: '../../'
+						}
+					},
+					'css-loader',
+					'sass-loader',
+					{
+						loader: 'postcss-loader',
+						options: {
+							postcssOptions: {
+								plugins: [
+									'autoprefixer'
+								]
+							}
+						}
+					}
+				]
+			},
+			{
+				test: /\.(jpe?g|png|gif|svg)$/i,
+				exclude: /node_modules/,
+				type: 'asset/resource',
+				generator: {
+					filename: '[path][name][ext]'
+				}
+			},
+			{
+				test: /\.html$/i,
+				loader: 'html-loader'
 			}
 		]
 	},
 	plugins: [
-		new MiniCssExtractPlugin(),
+		new MiniCssExtractPlugin({
+			filename: 'assets/css/[name].css'
+		}),
 		new HtmlWebpackPlugin({
 			filename: 'index.html',
 			template: './index.html',
