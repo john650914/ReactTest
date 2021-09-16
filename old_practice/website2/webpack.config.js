@@ -1,47 +1,44 @@
 var path = require('path');
+var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-var HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-    title: 'ChingChingTest',
-    template: __dirname + '/app/index.html',
-    filename: 'index.html',
-    inject: 'body'
-});
-
-module.exports ={
-	entry: [
-		'./app/index.js'
-	],
+module.exports = {
+	devtool: 'source-map',
+	entry: './src/index', //要再加入polyfill
 	output: {
-		path: __dirname + '/dist',
-		filename: "index_bundle.js"
+		path: path.join(__dirname, 'dist'),
+		filename: 'bundle.js',
+		publicPath: '/'
 	},
-	plugins: [
-		HtmlWebpackPluginConfig,
-		new ExtractTextPlugin('dist/css/main.css', {
-            allChunks: true
-        })
-	],
-	devtool: "source-map",
 	module: {
 		loaders: [
 			{
-				test: /(\.jsx?$|\.js$)/,
-				exclude: /(node_modules|bower_components)/,
-				loader: "babel",
+				test: /.jsx?$/,
+				loader: 'babel-loader',
+				exclude: /node_modules/,
 				query: {
 					presets: ['es2015', 'react']
 				}
 			},
 			{
-		        test: /(\.sass$|\.scss$)/,
-		        loader: ExtractTextPlugin.extract('css!sass')
-		    }
-
+				test: /(\.sass$|\.scss$)/,
+				loader: ExtractTextPlugin.extract('css?sourceMap!autoprefixer!sass')
+			},
+			{
+				test: /\.(jpg|gif|png)$/,
+				loader: 'url-loader?limit=1024&name=[path][name].[ext]'
+			}
 		]
 	},
-	sassLoader: {
-		includePaths: [__dirname + 'mod']
-	}
-}
+	plugins: [
+		new HtmlWebpackPlugin({
+			template: path.join(__dirname, 'src', 'index.html'),
+			filename: 'index.html',
+			inject: 'body',
+		}),
+		new ExtractTextPlugin('style/main.css', {
+			allChunks: true
+		})
+	]
+};
