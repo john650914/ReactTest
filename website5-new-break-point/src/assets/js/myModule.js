@@ -1,3 +1,7 @@
+import axios from 'axios';
+
+
+
 /* function consoller(m, t){
 	console.log(`${t.toString()}: ${m}`);
 } */
@@ -20,6 +24,11 @@ module.exports = myFN1; */
 
 export const myFN1 = (a) => console.log(a);
 export default myFN1;
+
+
+/* export const myFN2 = (a) => console.log(a);
+export default myFN2; */
+
 
 //測試ES6的Module
 /* export const myFN2 = (a) => console.log(a);

@@ -1,0 +1,19 @@
+body {
+  background: #dddddd;
+}
+
+h1 {
+  font-size: 42px;
+  -webkit-filter: blur(1px);
+          filter: blur(1px);
+}
+
+.btn {
+  padding: 8px 15px;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  background: #0060ce;
+  border-radius: 10px;
+  display: inline-block;
+}

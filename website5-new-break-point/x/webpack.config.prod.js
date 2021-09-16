@@ -8,10 +8,14 @@ module.exports = {
 	mode: 'production',
 	//devtool: 'source-map',
 	context: path.resolve(__dirname, 'src'),
-	entry: ['./assets/js/index.js'],
+	//entry: ['./assets/js/index.js'],
+	entry: {
+		index: ['./assets/js/common.js', './assets/js/index.js', './assets/css/common.scss', './assets/css/index.css'],
+		page: ['./assets/js/common.js', './assets/js/page.js', './assets/css/common.scss', './assets/css/page.css']
+	},
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: 'assets/js/default.js',
+		filename: 'assets/js/[name].js',
 		publicPath: ASSET_PATH
 	},
 	module: {
@@ -22,7 +26,15 @@ module.exports = {
 				use: {
 					loader: 'babel-loader',
 					options: {
-						presets: ['@babel/preset-env']
+						presets: ['@babel/preset-env'],
+						plugins: [
+							[
+								"@babel/plugin-transform-runtime",
+								{
+									corejs: 3
+								}
+							]
+						]
 					}
 				}
 			},
@@ -36,8 +48,18 @@ module.exports = {
 							publicPath: '../../'
 						}
 					},
-					'css-loader',
-					'sass-loader',
+					{
+						loader: 'css-loader',
+						options: {
+							sourceMap: true
+						}
+					},
+					{
+						loader: 'sass-loader',
+						options: {
+							sourceMap: true
+						}
+					},
 					{
 						loader: 'postcss-loader',
 						options: {
@@ -70,8 +92,26 @@ module.exports = {
 			filename: 'assets/css/[name].css'
 		}),
 		new HtmlWebpackPlugin({
-			filename: 'index.html',
+			chunks: ['index'],
+			title: '這是首頁',
+			meta: {
+				'viewport': 'width=device-width, initial-scale=1.0',
+				'og:title': {property: 'og:title', content: '這是首頁的og:title'}
+			},
 			template: './index.html',
+			filename: 'index.html',
+			inject: 'body',
+			minify: false
+		}),
+		new HtmlWebpackPlugin({
+			chunks: ['page'],
+			title: '內頁',
+			meta: {
+				'viewport': 'width=device-width, initial-scale=1.0',
+				'og:title': {property: 'og:title', content: '這是內頁的og:title'}
+			},
+			template: './page.html',
+			filename: 'page.html',
 			inject: 'body',
 			minify: false
 		})

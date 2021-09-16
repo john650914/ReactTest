@@ -20,7 +20,7 @@
 
 現在有了打包工具和開發server
 
-接下來開始安裝bable：npm i --save-dev @babel/core @babel/preset-env babel-loader
+接下來開始安裝babel：npm i --save-dev @babel/core @babel/preset-env babel-loader
 
 package.json裡也看到了
 
@@ -460,7 +460,38 @@ https://github.com/webpack-contrib/mini-css-extract-plugin/issues/691
 
 不過我在CSS裡寫的是url(../img/dora.png)，打包後變成url(../../assets/img/dora.png)，而且不知道該怎麼調整，以後再來看這個問題吧
 
+------------------------------------------------------------------------------------------------------
+
 另外webpack的asset模組好像沒有outputPath以及publicPath可以設定，這樣要圖片要怎麼上CDN啊？以後再來看這個問題吧
+
+（後來試了一下）
+
+webpack.config.js加入：
+
+const ASSET_PATH = process.env.ASSET_PATH || 'CDN/';
+
+module.exports = (env, arg) => {
+	...
+	if (arg.mode === 'production') {
+		config.output.publicPath = ASSET_PATH;
+		...
+	}
+	...
+}
+
+npm run prod
+
+可以看到輸出檔案內的<img>路徑、JS檔路徑、CSS檔路徑全被加上了「CDN/」，但樣式及程式都不見了
+
+我們在dist中加入一個CDN的資料夾，並把assets搬進去，重整畫面就正常了
+
+所以說config檔中的'CDN/'就可以換成CDN的網址，再把資源丟上去就可以吃CDN的路徑了
+
+PS：如果只是在本機開發或是資源沒有要上CDN就可以寫成：const ASSET_PATH = process.env.ASSET_PATH || './';
+
+如此就會吃相對路徑
+
+------------------------------------------------------------------------------------------------------
 
 現在來測javascript裡加入圖檔，在index.js裡輸入：
 
@@ -659,6 +690,56 @@ module.exports = {
 	]
 };
 
+----------------------------------------------------------
+補一下webpack-dev-server設定：
+
+devServer: {
+	static: {
+		directory: path.join(__dirname, 'src'),
+		watch: true,
+	},
+	host: 'local-ip', //直接用本機的IP開啟頁面
+	port: 9000,
+	hot: true,
+	open: 'index.html'
+}
+
+host指定為local-ip，這個IP可以在同一個IP的不同裝置開啟網頁，例如同一個wifi網路，電腦熱點，非常方便
+
+----------------------------------------------------------
+補一下webpack devtool（javascript的sourcemap設定）的設定：
+參考：https://webpack.js.org/configuration/devtool/#development
+
+//開發：
+module.exports = {
+	devtool: 'eval-cheap-module-source-map'
+};
+
+//上線1：
+module.exports = {
+	devtool: 'source-map' //輸出完整的source-map
+};
+
+//上線2：
+module.exports = {
+	devtool: 'none' //效能最好 //不寫devtool好像就是none了
+};
+
+----------------------------------------------------------
+補一下css-loader、sass-loader的map設定：
+{
+	loader: 'css-loader',
+	options: {
+		sourceMap: true
+	}
+},
+{
+	loader: 'sass-loader',
+	options: {
+		sourceMap: true
+	}
+}
+
 ##########################################################################################################################
 
 來寫Sass吧
@@ -765,37 +846,517 @@ display: flex;
  
 突然發現commonJS的require不能用了！
 
+是很奇怪，回去看myFN1、myFN2的module居然壞了，查了半天也跟峯誠討論，結果發現：
 
 
+■ 輸出commonJS，輸入commonJS：
+---------------------------------------
+const myFN1 = (a) => console.log(a);
+module.exports = myFN1;
+
+const myFN1 = require('./myModule.js');
+myFN1(111111111111);
+
+//合理正常
 
 
+■ 輸出commonJS，輸入ES6：
+---------------------------------------
+const myFN1 = (a) => console.log(a);
+module.exports = myFN1;
+
+import myFN1 from './myModule.js'
+myFN1(11111111111);
+
+//奇怪沒有壞ㄟ，之前記得不能這樣用啊…
 
 
+■ 輸出ES6，輸入ES6：
+---------------------------------------
+export const myFN1 = (a) => console.log(a);
+export default myFN1;
+
+import myFN1 from './myModule.js'
+myFN1(11111111111);
+
+//正常
 
 
+■ 輸出ES6，輸入commonJS：
+---------------------------------------
+export const myFN1 = (a) => console.log(a);
+export default myFN1;
+
+const myFN1 = require('./myModule.js').default;
+myFN1(111111111111);
+
+//峯誠google到的，說在後面加一個.default居然就可以用了
 
 
+結論是我可能眼花，用到輸出ES6，輸入commonJS這個搭配
 
+##########################################################################################################################
 
+babel功能補充：
 
+關於轉譯ES6的設定還是有很多學問，現在只記錄一下設定的結果，功能及其它細節就先不寫了。
 
+之前是用@babel/polyfill，但有更新的package且功能更完成就先不用了，改用@babel/runtime
 
+npm install @babel/plugin-transform-runtime --save-dev
 
+npm install --save @babel/runtime-corejs3
 
+config檔設定：
 
+rules: [
+	{
+		test: /\.js$/i,
+		exclude: /node_modules/,
+		use: {
+			loader: 'babel-loader',
+			options: {
+				presets: ['@babel/preset-env'],
+				plugins: [
+					[
+						"@babel/plugin-transform-runtime",
+						{
+							corejs: false
+						}
+					]
+				]
+			}
+		}
+	}
+]
 
+index.js中加入：
 
+let myPromise = new Promise(function(myResolve, myReject) {
+	let x = 0;
+	if (x == 0) {
+		myResolve("Promise OK的啦！");
+	} else {
+		myReject("Error");
+	}
+});
+myPromise.then(
+	function(v) {console.log(v);},
+	function(e) {console.log(e);}
+);
 
+npm run build
 
+console裡看到「Promise OK的啦！」就代表所有的ES新語法都被轉譯了，包含語法、js api等等
 
+參考資料：https://awdr74100.github.io/2020-03-16-webpack-babelloader/
 
+##########################################################################################################################
 
+來把輸出的頁面跟資源分開：
 
+新增如下的檔案：
+src/index.ejs(原本的index.html改檔名)
+src/page.ejs
+src/css/common.scss
+src/css/index.css(好像本來就有)
+src/css/pages.css
+src/js/common.js
+src/js/index.js
+src/js/page.js
 
+把index.js中import的css檔移除
 
+使用webpack的chunk功能，修改entry和output的設定：
 
+entry: {
+	index: ['./assets/js/common.js', './assets/js/index.js', './assets/css/common.scss', './assets/css/index.css'],
+	page: ['./assets/js/common.js', './assets/js/page.js', './assets/css/common.scss', './assets/css/page.css']
+},
+output: {
+	.....
+	filename: 'assets/js/[name].js'
+}
 
+修改HtmlWebpackPlugin的設定：
 
-有webpack教學：https://awdr74100.github.io/page/5/
+plugins: [
+	.....
+	new HtmlWebpackPlugin({
+		chunks: ['index'],
+		title: '這是首頁',
+		meta: {
+			'viewport': 'width=device-width, initial-scale=1.0',
+			'og:title': {property: 'og:title', content: '這是首頁的og:title'}
+		},
+		template: './index.ejs',
+		filename: 'index.html',
+		inject: 'body',
+		minify: false
+	}),
+	new HtmlWebpackPlugin({
+		chunks: ['page'],
+		title: '內頁',
+		meta: {
+			'viewport': 'width=device-width, initial-scale=1.0',
+			'og:title': {property: 'og:title', content: '這是內頁的og:title'}
+		},
+		template: './page.ejs',
+		filename: 'page.html',
+		inject: 'body',
+		minify: false
+	})
+]
 
-https://ithelp.ithome.com.tw/articles/10200329
+npm run build
+
+去看打包的檔案，輸出檔案內容如下：
+
+index.html
+page.html
+[assets]
+	[css]
+		index.css
+		page.css
+		[img]
+			dora.png
+	[img]
+		nobi.png
+	[js]
+		index.js
+		page.js
+
+我們可以發現common.js和index.js整合成了index.js，common.js和page.js整合成了page.js，CSS的部份也一樣
+
+使用瀏覽器開啟頁面就可以看到index.html和page.html裡的資源也很好的分開了，title及meta資料也被設定了，我唯一美中不足就是common.js和common.css無法單獨被抽出來
+
+回去看一下index.ejs；為什麼要改副檔名呢？因為設定title要使字ejs模版語言，頁面中的title要寫成<title><%= htmlWebpackPlugin.options.title %></title>
+
+原本是不用改副檔名的，但慶陽查到如果有裝html-loader就要改副檔名才有用
+
+以上的設定雖然有點多，但習慣就好，另要config.dev.js也要做相同的設定，好像要把正式跟開發的config檔整合在一起比較理想
+
+不過！！！突然發現gian.jpg不見了！是不是因為html-loader不認得.ejs的檔案？？
+
+先把.ejs改回.html
+
+npm run build
+
+果然就好了…那個<title>還是自己手動下好了，不然用.ejs檔裡面的<img>還要寫成<img src="<%= require('./img/kolfiber.jpg') %>">，也太痛苦
+
+##########################################################################################################################
+
+https://awdr74100.github.io/2020-04-06-webpack-splitchunksplugin/
+
+上面那個教學說：
+
+當我們使用 Webpack 進行打包時，相關的 npm 套件也會通通被打包進 bundle.js 內，但這樣的行為對效能來說是較不友善的，
+原因為 bundle.js 實在是太肥大了，正確的作法應該是將 node_modules 內的模組單獨打包成一個檔案，避免載入時間過長的問題。
+
+但目前我覺得好像沒有遇到太「肥大」的問題，就先不管了吧
+
+-----------------------------------------------
+
+補充：
+
+https://awdr74100.github.io/2020-04-13-webpack-vueloader/
+
+教學的作者另一篇有個範例，看起來好像是他慣用的設定，先記在這邊（不過我用的webpack版本比較新設定也許會有些許不同）：
+
+optimization: {
+	runtimeChunk: {
+		name: 'manifest',
+	},
+	splitChunks: {
+		cacheGroups: {
+			vendors: {
+				test: /[\\/]node_modules[\\/]/,
+				chunks: 'all',
+				name: 'vendors',
+				enforce: true,
+			},
+			default: false,
+		}
+	}
+}
+
+作者：
+
+配置 SplitChunksPlugin 將 node_modules 內的套件抽離成獨立檔案
+配置 runtimeChunk 將 Webpack 運行時代碼抽離成獨立檔案
+
+-----------------------------------------------
+
+後來發現：
+
+後來在做react環境的時候發現react會被包到js檔裡，如果專案中有兩個頁面載入不同js檔，這兩個js檔同時都有載入react時，輸出的檔案就會有重複的react內容
+
+後來加入了上方的優化設定，確實輸出的js檔變的很小，並且多了共用的vendors.js，看來在不同頁面中有使用共同模組（套件）時確實很有用
+
+##########################################################################################################################
+
+將開發及上線的設定整合為一個webpack.config.js
+
+先調整package.json：
+
+"scripts": {
+  "dev": "webpack serve --config webpack.config.js --mode=development",
+  "prod": "webpack --config webpack.config.js --mode=production"
+},
+
+把原本的watch改成dev、build改成prod了，然後把本來在config檔內module.exports的mode移到scripts裡
+
+然後移除webpack.config.dev.js、webpack.config.prod.js
+
+新增webpack.config.js，其內容為：
+
+$	const path = require('path');
+$	const ASSET_PATH = process.env.ASSET_PATH || './';
+$	const HtmlWebpackPlugin = require('html-webpack-plugin');
+$	const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+$	const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+$	
+$	var config = {
+$		context: path.resolve(__dirname, 'src'),
+$		entry: {
+$			index: ['./assets/js/common.js', './assets/js/index.js', './assets/css/common.scss', './assets/css/index.css'],
+$			page: ['./assets/js/common.js', './assets/js/page.js', './assets/css/common.scss', './assets/css/page.css']
+$		},
+$		output: {
+$			path: path.resolve(__dirname, 'dist'),
+$			filename: 'assets/js/[name].js'
+$		},
+$		module: {
+$			rules: [
+$				{
+$					test: /\.js$/i,
+$					exclude: /node_modules/,
+$					use: {
+$						loader: 'babel-loader',
+$						options: {
+$							presets: ['@babel/preset-env'],
+$							plugins: [
+$								[
+$									"@babel/plugin-transform-runtime",
+$									{
+$										corejs: 3
+$									}
+$								]
+$							]
+$						}
+$					}
+$				},
+$				{
+$					test: /\.(sass|scss|css)$/i,
+$					exclude: /node_modules/,
+$					use: [
+$						{
+$							loader: MiniCssExtractPlugin.loader,
+$							options: {
+$								publicPath: '../../'
+$							}
+$						},
+$						{
+$							loader: 'css-loader',
+$							options: {
+$								sourceMap: true
+$							}
+$						},
+$						{
+$							loader: 'sass-loader',
+$							options: {
+$								sourceMap: true
+$							}
+$						},
+$						{
+$							loader: 'postcss-loader',
+$							options: {
+$								postcssOptions: {
+$									plugins: [
+$										'autoprefixer'
+$									]
+$								}
+$							}
+$						}
+$					]
+$				},
+$				{
+$					test: /\.(jpe?g|png|gif|svg)$/i,
+$					exclude: /node_modules/,
+$					type: 'asset/resource',
+$					generator: {
+$						filename: '[path][name][ext]'
+$					}
+$				},
+$				{
+$					test: /\.html$/i,
+$					loader: 'html-loader'
+$				}
+$			]
+$		},
+$		plugins: [
+$			new MiniCssExtractPlugin({
+$				filename: 'assets/css/[name].css'
+$			}),
+$			new HtmlWebpackPlugin({
+$				chunks: ['index'],
+$				title: '這是首頁',
+$				meta: {
+$					'viewport': 'width=device-width, initial-scale=1.0',
+$					'og:title': {property: 'og:title', content: '這是首頁的og:title'}
+$				},
+$				template: './index.html',
+$				filename: 'index.html',
+$				inject: 'body',
+$				minify: false
+$			}),
+$			new HtmlWebpackPlugin({
+$				chunks: ['page'],
+$				title: '內頁',
+$				meta: {
+$					'viewport': 'width=device-width, initial-scale=1.0',
+$					'og:title': {property: 'og:title', content: '這是內頁的og:title'}
+$				},
+$				template: './page.html',
+$				filename: 'page.html',
+$				inject: 'body',
+$				minify: false
+$			})
+$		]
+$	};
+$	
+$	module.exports = (env, arg) => {
+$		if (arg.mode === 'development') {
+$			config.devServer = {
+$				static: {
+$					directory: path.join(__dirname, 'src'),
+$					watch: true,
+$				},
+$				host: 'local-ip',
+$				port: 9000,
+$				hot: true,
+$				open: 'index.html'
+$			}
+$			config.devtool = 'eval-cheap-module-source-map';
+$		}
+$	
+$		if (arg.mode === 'production') {
+$			config.output.publicPath = ASSET_PATH;
+$			config.plugins.push(new CleanWebpackPlugin());
+$		}
+$	
+$		return config;
+$	}
+
+把原本module.exports的內容移到一個config的變數裡，然後在module.exports導出一個函式，這個函式在調用時可傳入兩個參數：
+
+env：環境變數，現在沒有在用就不去查資料了
+
+arg：描述傳遞給webpack選項的物件，其中一個key就是development或是production
+
+接下來就可使用第二個參數來判斷開發及上線版將config變數做不同的設定
+
+最後再return config變數
+
+npm run dev / npm run prod <= 都可以正常開啟dev server或是打包網頁，這樣config檔就整潔多了！
+
+##########################################################################################################################
+
+建立React的開發環境
+
+npm install react react-dom --save
+
+npm install @babel/preset-react --save-dev
+
+修改webpack.config.js：
+
+rules: [
+	{
+		test: /\.(js|jsx)$/i,
+		exclude: /node_modules/,
+		use: {
+			loader: 'babel-loader',
+			options: {
+				presets: ['@babel/preset-react', '@babel/preset-env'],
+				plugins: [
+					[
+						"@babel/plugin-transform-runtime",
+						{
+							corejs: 3
+						}
+					]
+				]
+			}
+		}
+	}
+]
+
+修改index.html：
+
+加入<div id="root"></div>
+
+新增App.jsx，內容為：
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+let App = <h2>text from App.jsx</h2>
+ReactDOM.render(
+	App,
+	document.getElementById('root')
+);
+
+修改index.js：
+
+import App from './App.jsx'
+
+npm run dev / npm run prod <= 成功使用react框架
+
+看了一下index.js變的很大，應該是塞了react的程式
+
+----------------------------------------------
+
+不過發現一個問題，用IE9、IE10開啟會報錯說 'Set'未定義…，react就不能用了
+
+查了一下，找不到專門說明這個問題的文章；
+
+有的人說裝@babel/polyfill，但babel官網說這個套件已棄用，改用core-js
+
+npm install --save core-js
+
+修改webpack.config.js，把下方語法註解掉：
+
+/* plugins: [
+	[
+		"@babel/plugin-transform-runtime",
+		{
+			corejs: 3
+		}
+	]
+] */
+
+在App.jsx的最前面加入：
+
+import "core-js/stable";
+import "regenerator-runtime/runtime";
+
+npm run prod
+
+用IE9開啟打包後的檔案就可以看了，不過index.js變的更大了，目前先這樣解吧
+
+----------------------------------------------
+
+試試在react中插入圖片
+
+let App = <div style={{
+		backgroundImage: `url(${require('../css/img/bg.png')})`,
+		backgroundColor: '#fff'
+	}}>
+	<h2>text from App.jsx</h2>
+	<img src={require('../img/react.png')} />
+</div>;
+
+就用require()吧
+
+##########################################################################################################################
+
+基本的開發環境差不多這樣了；來開新專案復習react
